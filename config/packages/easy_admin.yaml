@@ -11,7 +11,7 @@ framework:
     translator:
         fallbacks: [ "en" ]
 
-easy_admin_bundle:
-    resource: '@EasyAdmin/Controller/EasyAdminController.php'
-    prefix: /test  
-    type: annotation
+# easy_admin_bundle:
+#     resource: '@EasyAdmin/Controller/EasyAdminController.php'
+#     prefix: /test  
+#     type: annotation
