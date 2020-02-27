@@ -1,0 +1,17 @@
+easy_admin:
+   entities:
+       # List the entity class name you want to manage
+      Product:
+        class: App\Entity\Product
+      Order:
+        class: App\Entity\Order
+      User:
+        class: App\Entity\User
+framework:
+    translator:
+        fallbacks: [ "en" ]
+
+easy_admin_bundle:
+    resource: '@EasyAdmin/Controller/EasyAdminController.php'
+    prefix: /test  
+    type: annotation
