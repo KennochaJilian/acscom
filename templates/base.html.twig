@@ -6,6 +6,18 @@
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
+        <style>
+            .filter{
+                display:block; 
+                position:sticky; 
+                top: 20px; 
+            }
+            .grid{
+                display:grid; 
+                grid-template-columns: repeat(3, 1fr); 
+                grid-gap: 20px;  
+            }
+        </style>
     </head>
     <body>
         <header>

@@ -1,4 +1,4 @@
-<div class="col-md-4">
+<div class="col-md-3">
     <div class="card mb-4 box-shadow">
     <img src="" width="100%" alt="Card image cap"/>
     <div class="card-body">
@@ -9,6 +9,12 @@
             <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
         </div>
         <small class="text-muted">{{product.price | number_format(0,',', ' ')}} €</small>
+        </div>
+        <div>
+            <em class="text-muted text-primary text-italic">
+                #{{product.category.name}}
+                </em>
+
         </div>
     </div>
     </div>

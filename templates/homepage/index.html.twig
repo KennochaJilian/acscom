@@ -10,14 +10,24 @@
       <div class="album py-5 bg-light">
         <div class="container">
           <div class="row">
-    {% for product in products %}
-      {% include 'product/_card.html.twig' with {product:product} only %}
 
-      
-            
+          <div class="col-md-3">
           
+          {% include 'product/_filter.html.twig' with {form:form} only %}
+          </div>
 
-        {% endfor %}
+          <div class="col-md-9 d-flex flex-wrap">
+            
+
+             {% for product in products %}
+              {% include 'product/_card.html.twig' with {product:product} only %} 
+            {% endfor %}
+            
+           
+           
+          
+          </div>
+  
       </div>
            
     </main>
