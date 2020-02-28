@@ -47,4 +47,17 @@ class ProductRepository extends ServiceEntityRepository
         ;
     }
     */
+    /**
+     * 
+     * Recupère les produits en lien avec une recherche
+     * @return Product[] 
+     */
+
+    public function findSearch():array
+    {
+
+
+        return $this->findAll(); 
+
+    }
 }

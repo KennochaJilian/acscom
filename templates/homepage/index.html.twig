@@ -1,18 +1,24 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Liste des produits{% endblock %}
-
 {% block body %}
 
-    <main role="main">
+   <main role="main">
+
+  
 
       <div class="album py-5 bg-light">
         <div class="container">
-
           <div class="row">
+    {% for product in products %}
+      {% include 'product/_card.html.twig' with {product:product} only %}
+
+      
             
-          </div>
-        </div>
+          
+
+        {% endfor %}
       </div>
+           
     </main>
 {% endblock %}

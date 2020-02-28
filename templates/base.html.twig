@@ -20,14 +20,14 @@
                     <h4 class="text-white">Connexion</h4>
                     <ul class="list-unstyled">
                         {% if app.user %}
-	                        <li><a href="{{ path('profile') }}" class="text-white">Mon profil</a></li>
-	                        <li><a href="{{ path('logout') }}" class="text-white">Déconnexion</a></li>
+	                        <li><a href="#" class="text-white">Mon profil</a></li>
+	                        <li><a href="#" class="text-white">Déconnexion</a></li>
                         {% else %}
-	                        <li><a href="{{ path('register') }}" class="text-white">Insciption</a></li>
-	                        <li><a href="{{ path('login') }}" class="text-white">Connexion</a></li>
+	                        <li><a href="#" class="text-white">Insciption</a></li>
+	                        <li><a href="#" class="text-white">Connexion</a></li>
                         {% endif %}
                     </ul>
-                    <a class="text-white" href="{{ path('cart') }}">Panier</a>
+                    <a class="text-white" href="#">Panier</a>
                     </div>
                 </div>
                 </div>
