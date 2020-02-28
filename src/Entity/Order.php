@@ -2,13 +2,10 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\OrderRepository")
- * @ORM\Table(name="orders")
  */
 class Order
 {
@@ -22,75 +19,127 @@ class Order
     /**
      * @ORM\Column(type="datetime")
      */
-    private $datetime;
+    private $orderDate;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Product")
+     * @ORM\Column(type="boolean")
      */
-    private $Product;
+    private $optionGift;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="App\Entity\DeliveryOptions", inversedBy="orders")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $email;
+    private $deliveryOption;
 
-    public function __construct()
-    {
-        $this->datetime = new \Datetime();
-        $this->Product = new ArrayCollection();
-    }
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $orderPriceTotal;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="orders")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Adress")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $deliveryAddress;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Adress")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $facturationAddress;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getDatetime(): ?\DateTimeInterface
+    public function getOrderDate(): ?\DateTimeInterface
     {
-        return $this->datetime;
+        return $this->orderDate;
     }
 
-    public function setDatetime(\DateTimeInterface $datetime): self
+    public function setOrderDate(\DateTimeInterface $orderDate): self
     {
-        $this->datetime = $datetime;
+        $this->orderDate = $orderDate;
 
         return $this;
     }
 
-    /**
-     * @return Collection|Product[]
-     */
-    public function getProduct(): Collection
+    public function getOptionGift(): ?bool
     {
-        return $this->Product;
+        return $this->optionGift;
     }
 
-    public function addProduct(Product $product): self
+    public function setOptionGift(bool $optionGift): self
     {
-        if (!$this->Product->contains($product)) {
-            $this->Product[] = $product;
-        }
+        $this->optionGift = $optionGift;
 
         return $this;
     }
 
-    public function removeProduct(Product $product): self
+    public function getDeliveryOption(): ?DeliveryOptions
     {
-        if ($this->Product->contains($product)) {
-            $this->Product->removeElement($product);
-        }
+        return $this->deliveryOption;
+    }
+
+    public function setDeliveryOption(?DeliveryOptions $deliveryOption): self
+    {
+        $this->deliveryOption = $deliveryOption;
 
         return $this;
     }
 
-    public function getEmail(): ?string
+    public function getOrderPriceTotal(): ?float
     {
-        return $this->email;
+        return $this->orderPriceTotal;
     }
 
-    public function setEmail(string $email): self
+    public function setOrderPriceTotal(float $orderPriceTotal): self
     {
-        $this->email = $email;
+        $this->orderPriceTotal = $orderPriceTotal;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getDeliveryAddress(): ?Adress
+    {
+        return $this->deliveryAddress;
+    }
+
+    public function setDeliveryAddress(?Adress $deliveryAddress): self
+    {
+        $this->deliveryAddress = $deliveryAddress;
+
+        return $this;
+    }
+
+    public function getFacturationAddress(): ?Adress
+    {
+        return $this->facturationAddress;
+    }
+
+    public function setFacturationAddress(?Adress $facturationAddress): self
+    {
+        $this->facturationAddress = $facturationAddress;
 
         return $this;
     }
