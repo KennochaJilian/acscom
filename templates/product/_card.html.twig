@@ -8,6 +8,9 @@
         <div class="btn-group">
             <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
         </div>
+        <div>
+            <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{{ path('cart_add', {'id' : product.id}) }}">Ajouter au panier</a></button>
+        </div>
         <small class="text-muted">{{product.price | number_format(0,',', ' ')}} €</small>
         </div>
         <div>
