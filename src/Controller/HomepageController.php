@@ -13,11 +13,8 @@ class HomepageController extends AbstractController
      */
     public function index()
     {
-        $em = $this->getDoctrine()->getManager();
-        $products = $em->getRepository(Product::class)->findAll();
+        
 
-        return $this->render('homepage/index.html.twig', [
-            'products' => $products
-        ]);
+        return $this->render('homepage/index.html.twig', []);
     }
 }
