@@ -67,4 +67,10 @@ class CartService{
         return $total;
     }
 
+    public function modifQuantity(int $id){
+        $panier = $this->session->get('panier'); 
+        $panier[$id] = $_POST['quantity'];
+        $this->session->set('panier', $panier);
+    }
+
 }
