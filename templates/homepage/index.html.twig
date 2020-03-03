@@ -20,7 +20,7 @@
           <div class="col-md-9 d-flex flex-wrap">
             
 
-             {% for product in products %}
+            {% for product in products %}
               {% include 'product/_card.html.twig' with {product:product} only %} 
             {% endfor %}
             

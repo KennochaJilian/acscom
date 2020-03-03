@@ -17,12 +17,10 @@
                 grid-template-columns: repeat(3, 1fr); 
                 grid-gap: 20px;  
             }
-           
         </style>
     </head>
     <body>
         <header>
-           
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="{{path('homepage')}}">Logo</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,10 +35,10 @@
       <li class="nav-item">
         <a class="nav-link" href="{{ path('pageCategory', {'id' : 2}) }}">Accesoires</a>
       </li>
-       <li class="nav-item">
+      <li class="nav-item">
         <a class="nav-link" href="{{ path('pageCategory', {'id' : 4}) }}">Maison</a>
       </li>
-       <li class="nav-item">
+      <li class="nav-item">
         <a class="nav-link" href="{{ path('pageCategory', {'id' : 5}) }}">Bureau</a>
       </li>    
     </ul>
@@ -49,22 +47,23 @@
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
     </form>
       <ul class="navbar-nav ml-auto">
-      <li class="nav-item ">
-        <a class="nav-link" href="#">Connecter <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">WishList</a>
-      </li>
-       <li class="nav-item">
-        <a class="nav-link" href="{{ path('cart_index') }}">Panier</a>
-      </li>          
-    </ul>
-
+          <li class="nav-item ">
+            <a class="nav-link" href="{{ path('contact_form') }}">Contact <span class="sr-only">(current)</span></a>
+          </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="#">Connecter <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">WishList</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ path('cart_index') }}">Panier</a>
+        </li>          
+      </ul>
   </div>
 </nav>
-        </header>
+      </header>
         {% block body %}{% endblock %}
-       
         
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}

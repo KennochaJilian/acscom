@@ -3,8 +3,7 @@
 {% block title %}Hello NavBarController!{% endblock %}
 
 {% block body %}
-
-             {% for product in products %}
-              {% include 'product/_card.html.twig' with {product:product} only %} 
-            {% endfor %}
+  {% for product in products %}
+    {% include 'product/_card.html.twig' with {product:product} only %} 
+  {% endfor %}
 {% endblock %}
