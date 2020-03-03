@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter une adresse{% endblock %}
+
+{% block body %}
+<h1> Profil </h1>
+<div class="container">
+<div class="row"> 
+    <div class="col-md-6">
+    <h2>Adresses favorites</h2>
+    <a href="{{path('profil_addAddress')}}" class="btn btn-success">Ajouter une adresse</a>
+    {% for address in addressUser %}
+    <div class="card">
+        <div class="card-body">
+         <p class="card-text"> Nom : {{address.nameUser}} </p>
+        <p class="card-text"> Rue : {{address.street}} </p>
+        <p class="card-text"> Code postal : {{address.zipCode}} </p>
+        <p class="card-text"> Ville : {{address.city}} </p>
+        <div class="d-flex">
+        <a href="{{path('profil_updateAddress', {'id' : address.id})}}" class="btn btn-warning">Modifier</a>
+        <a href="{{path('profil_rmAddress', {'id' : address.id})}}" class="btn btn-danger">Supprimer</a>        
+        </div>        
+        </div>
+    </div>  
+    {% endfor %}
+    <h2>Historique de commande </h2>
+    <h2> Moyens de paiement </h2>
+    </div>
+
+    <div class="col-md-6">
+     
+    </div>
+
+</div>
+    
+</div>
+
+{% endblock %}

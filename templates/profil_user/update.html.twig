@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% if editMode %}    
+    Modifier l'adresse 
+    {% else %}
+    Ajouter une adresse
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+   <h1>
+     {% if editMode %}    
+    Modifier l'adresse 
+    {% else %}
+    Ajouter une adresse
+    {% endif %}
+    </h1>
+<div class="container">
+<div class="row"> 
+
+
+    <div class="col-md-6">
+        {{form_start(form) }}
+
+            {{form_row(form.nameUser, {'label': 'Nom', 'attr': {'placeholder' : 'Nom'}}) }}
+            {{form_row(form.street, {'label': 'Numéro et nom de rue', 'attr': {'placeholder' : 'Numéro et nom de rue'}}) }}
+            {{form_row(form.zipCode, {'label': 'Code postal', 'attr': {'placeholder' : 'Code postal'}}) }}
+            {{form_row(form.city, {'label': 'Ville', 'attr': {'placeholder' : 'Ville'}}) }}
+            {{form_row(form.deliveryAdress, {'label': 'Est ce une adresse de livraison ?'}) }}
+
+            {% if editMode %}    
+                <button class="btn btn-success"> Modifier l'adresse !<button>
+            {% else %}
+                <button class="btn btn-success"> Ajouter une adresse !<button>
+            {% endif %}
+        {{form_end(form)}}
+    </div>
+{% endblock %}
