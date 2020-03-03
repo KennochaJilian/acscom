@@ -34,11 +34,26 @@ class HomepageController extends AbstractController
         return $this->render('homepage/index.html.twig', [
             'products' => $products,
             'form' => $form->createView()
-           
         ]);
     }
 
+    /**
+     * 
+     *@Route ("/pageproduct/{id}", name="pageProduct")
+     */
+    public function _product($id){
 
+        $repo = $this->getDoctrine()->getRepository(Product::class);
+
+        $product = $repo->find($id);
+       
+
+        return $this->render('product/_product.html.twig', [
+
+        'product' => $product
+        
+        
+            ]);
+    }
     
 }
-  
