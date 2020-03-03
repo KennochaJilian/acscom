@@ -29,7 +29,7 @@ class ContactFormController extends AbstractController
             $manager->persist($contact);
             $manager->flush();
 
-            return $this->redirectToRoute('homepage')
+            return $this->redirectToRoute('homepage');
         }
         
 
