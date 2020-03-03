@@ -19,10 +19,7 @@ class ProfilUserController extends AbstractController
 
     public function index(AdressRepository $repoAddresse)
     {
-        if (!$this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
-            // Sinon on déclenche une exception « Accès interdit »
-            throw new AccessDeniedException('Accès limité aux auteurs.');
-        }
+        
 
         $addressUser = $repoAddresse->findBy([
             'user' => $this->getUser()->getId()

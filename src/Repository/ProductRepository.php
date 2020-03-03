@@ -62,17 +62,14 @@ class ProductRepository extends ServiceEntityRepository
             ->select('c','p')
             ->join('p.category', 'c');
 
-        $query2 = $this
-            ->createQueryBuilder('p')
-            ->leftJoin('p.tag', 't')
-            ->where('t.name = :name')
-            ->setParameter('name', $search->q);
+      
             
         
         if(!empty($search->q)){
             
             $query = $query
-                ->andWhere('p.name LIKE :q')
+                ->leftJoin('p.tag', 't')
+                ->andWhere('p.name LIKE :q or t.name LIKE :q')                
                 ->setParameter('q', "%{$search->q}%");
 
             
@@ -108,10 +105,9 @@ class ProductRepository extends ServiceEntityRepository
         }
 
 
-        $results = $query2->getQuery()->getResult();
-        $results += $query->getQuery()->getResult();
+      
         
-        return $results;  
+        return $query->getQuery()->getResult();
 
     }
 
