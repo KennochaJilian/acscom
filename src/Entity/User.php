@@ -5,11 +5,16 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
+
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @UniqueEntity(fields={"email"}, message="L'adresse mail a déjà été utilisée ! ")
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -20,18 +25,26 @@ class User
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
      */
-    private $name;
+    private $username;
+
+    /**
+     * @ORM\Column(name="email", type="string", length=255, unique=true)
+     * @Assert\Email()
+     */
+    protected $email;
 
     /**
      * @ORM\Column(type="string", length=255)
-     */
-    private $mail;
-
-    /**
-     * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min="8", minMessage= "Mot de passe trop court !")
      */
     private $password;
+
+    /**
+     * @Assert\EqualTo(propertyPath="password", message="Les mots de passe doivent être identitques ! "  )
+     */
+    public $confirm_password; 
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -74,26 +87,26 @@ class User
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getUsername(): ?string
     {
-        return $this->name;
+        return $this->username;
     }
 
-    public function setName(string $name): self
+    public function setUsername(string $username): self
     {
-        $this->name = $name;
+        $this->username = $username;
 
         return $this;
     }
 
-    public function getMail(): ?string
+    public function getEmail(): ?string
     {
-        return $this->mail;
+        return $this->email;
     }
 
-    public function setMail(string $mail): self
+    public function setEmail(string $email): self
     {
-        $this->mail = $mail;
+        $this->email = $email;
 
         return $this;
     }
@@ -219,4 +232,14 @@ class User
 
         return $this;
     }
+
+
+public function eraseCredentials(){}
+
+public function getSalt(){}
+
+public function getRoles(){
+    return ['ROLE_USER']; 
+}
+
 }
