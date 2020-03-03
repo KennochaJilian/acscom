@@ -22,8 +22,20 @@
                 {% for item in items %}
                     <tr>
                         <td>{{ item.product.name }}</td>
-                        <td>{{ item.product.price }} €</td>
-                        <td>{{ item.quantity }}</td>
+                        <td >{{ item.product.price }} €</td>
+                        <td>
+                            <form method="POST" action="{{ path('cart_modif', {'id' : item.product.id}) }}"> 
+                                <select name="quantity" class="" id="inlineFormCustomSelect">
+                                    <option selected> {{ item.quantity }}</option>
+                                    {% for i in 1..item.product.quantity %}
+                                    <option value="{{i}}">{{i}}</option>
+                                    {% endfor %}
+                                    
+                                </select>
+                                <button type="submit" class="btn btn-primary btn-sm">Modifier</button>
+                            </form> 
+                           
+                        </td>
                         <td>{{ item.product.price * item.quantity }} €</td>
                         <td>
                             <a href="{{ path('cart_remove', {'id' : item.product.id}) }}" class="btn btn-danger btn-sm">Supprimer</a>
@@ -41,11 +53,11 @@
         </thead>
     </table>
         
+        <a href="{{ path('order')}}" class="btn btn-success"> Valider la commande</a>
+
     {% else %}
         <p>Votre panier est vide</p>
         
     {% endif %}
-
-    
 
 {% endblock %}
