@@ -46,7 +46,6 @@ class HomepageController extends AbstractController
         $repo = $this->getDoctrine()->getRepository(Product::class);
 
         $product = $repo->find($id);
-       
 
         return $this->render('product/_product.html.twig', [
 

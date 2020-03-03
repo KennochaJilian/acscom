@@ -18,7 +18,7 @@ class CartController extends AbstractController
             'total' => $cartService->getTotal()
         ]);
     }
-
+        
     /**
      * @Route("/panier/add/{id}", name="cart_add")
      */
