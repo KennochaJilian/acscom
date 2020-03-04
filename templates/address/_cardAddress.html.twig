@@ -1,0 +1,15 @@
+<div class="card">
+        <div class="card-body">
+        <p class="card-text"> Nom : {{address.nameUser}} </p>
+        <p class="card-text"> Rue : {{address.street}} </p>
+        <p class="card-text"> Code postal : {{address.zipCode}} </p>
+        <p class="card-text"> Ville : {{address.city}} </p>
+        <div class="d-flex">
+        <a href="{{path('profil_updateAddress', {'id' : address.id})}}" class="btn btn-warning">Modifier</a>
+        <a href="{{path('profil_rmAddress', {'id' : address.id})}}" class="btn btn-danger">Supprimer</a> 
+        {% if orderMode %}
+        <a href="{{path('order_useAddress', {'id' : address.id})}}" class="btn btn-success">Utiliser</a>
+        {% endif %}       
+        </div>        
+        </div>
+    </div>  

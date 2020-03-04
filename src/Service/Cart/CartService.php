@@ -73,4 +73,9 @@ class CartService{
         $this->session->set('panier', $panier);
     }
 
+    public function removeAllCart(){
+    $panier = []; 
+    $this->session->set('panier', $panier);
+    }
+
 }

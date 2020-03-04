@@ -9,7 +9,7 @@ use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+
 
 class ProfilUserController extends AbstractController
 {
@@ -27,7 +27,8 @@ class ProfilUserController extends AbstractController
         
 
         return $this->render('profil_user/index.html.twig', [
-            'addressUser' => $addressUser 
+            'addressUser' => $addressUser,
+            'orderMode' => false 
         ]);
     }
 
