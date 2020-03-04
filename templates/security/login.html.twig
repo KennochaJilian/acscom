@@ -1,17 +1,54 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<h1> Connexion ! </h1>
 
-<form action="{{path('security_login')}}" method="POST">
-    <div class="form-group">
-        <input placeholder="Adresse mail" required name= "_username" type="text" class="form-control">
+<div class="container " style="position:absolute;top:40%; left:50%; transform: translate(-50%,-50%);">
+    
+    <div class="d-flex flex-column border bg-dark text-light" style="margin-bottom: 5%;">
+        <h1> Connexion </h1>
     </div>
-    <div class="form-group">
-        <input placeholder="Mot de passe" required name= "_password" type="password" class="form-control">
+
+    <div class="row justify-content-around ">
+
+        <div class="d-flex flex-column col-6 ">
+
+            <h2>Je suis déjà utilisateur(-trice)</h2>
+            <p>Saisissez votre adresse e-mail et votre mot de passe pour vous identifier.</p>
+            
+            <form action="{{path('security_login')}}" method="POST">
+                <div class="form-group">
+                    <input placeholder="Adresse mail" required name= "_username" type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input placeholder="Mot de passe" required name= "_password" type="password" class="form-control">
+                </div>
+
+                <a href="#">Vous avez oublié votre mot de passe ?</a>
+    
+                <div class="form-group">
+                    <button class="btn btn-dark w-50 mt-4" type="submit"> SE CONNECTER</button>
+                </div>
+                
+            </form>
+    
+    
+        </div>
+    
+        <div class="d-flex flex-column col-4 ">
+            
+            <div class="d-flex flex-column ">
+
+                <h2>Nouveau chez nous ?</h2>
+            <p>Si vous n'avez pas encore de compte d'utilisateur de acs.com, utilisez cette option pour accéder au formulaire d'inscription. 
+
+                Nous vous demanderons les informations nous permettant d'accélérer le processus d'achat.</p>
+
+            </div>
+                    <a href="{{ path('security_registration')}}" class="btn btn-dark w-100 mx-0 mt-4">CREER UN COMPTE</a>    
+        </div>
+
     </div>
-    <div class="form-group">
-    <button class="btn btn-success" type="submit"> Se connecter</button>
-    </div>
-</form>
+
+</div>
+
 {% endblock %}
