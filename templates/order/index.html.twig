@@ -28,8 +28,12 @@
             <div class="card">
                 <div class="card-body">
                     <p> Montant total: {{ total }} € </p>
-                    <a class="btn btn-success" href="{{path('order_check')}}"> Acheter </a>
+                    
                 </div>
+            </div>
+            <div>
+            
+            {{form(formOrder)}}
             </div>
         </div>
     </div>

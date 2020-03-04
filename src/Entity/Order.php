@@ -58,14 +58,18 @@ class Order
      */
     private $facturationAddress;
 
+  
+
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Product")
+     * @ORM\OneToMany(targetEntity="App\Entity\OrdersProducts", mappedBy="orders", orphanRemoval=true)
      */
-    private $product;
+    private $ordersProducts;
 
     public function __construct()
     {
         $this->product = new ArrayCollection();
+        $this->orderDate = new \DateTime();
+        $this->ordersProducts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -157,27 +161,33 @@ class Order
         return $this;
     }
 
+
     /**
-     * @return Collection|Product[]
+     * @return Collection|OrdersProducts[]
      */
-    public function getProduct(): Collection
+    public function getOrdersProducts(): Collection
     {
-        return $this->product;
+        return $this->ordersProducts;
     }
 
-    public function addProduct(Product $product): self
+    public function addOrdersProduct(OrdersProducts $ordersProduct): self
     {
-        if (!$this->product->contains($product)) {
-            $this->product[] = $product;
+        if (!$this->ordersProducts->contains($ordersProduct)) {
+            $this->ordersProducts[] = $ordersProduct;
+            $ordersProduct->setOrders($this);
         }
 
         return $this;
     }
 
-    public function removeProduct(Product $product): self
+    public function removeOrdersProduct(OrdersProducts $ordersProduct): self
     {
-        if ($this->product->contains($product)) {
-            $this->product->removeElement($product);
+        if ($this->ordersProducts->contains($ordersProduct)) {
+            $this->ordersProducts->removeElement($ordersProduct);
+            // set the owning side to null (unless already changed)
+            if ($ordersProduct->getOrders() === $this) {
+                $ordersProduct->setOrders(null);
+            }
         }
 
         return $this;

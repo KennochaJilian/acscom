@@ -42,7 +42,8 @@ class Adress
     private $deliveryAdress;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="adresses")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="adresses", cascade={"persist"})
+     * 
      */
     private $user;
 
@@ -122,4 +123,11 @@ class Adress
 
         return $this;
     }
+
+    
+    public function __toString()
+    {
+        return $this->name; 
+    }
 }
+
