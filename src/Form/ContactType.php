@@ -23,7 +23,7 @@ class ContactType extends AbstractType
                 'label'=>false, 
                 'required'=>false,
                 'class' => CategoryQuestions::class
-                 ])
+                ])
         ;
     }
 

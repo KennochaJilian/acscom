@@ -34,13 +34,15 @@ class Contact
     private $content;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\CategoryQuestions", inversedBy="contact")
+     * @ORM\ManyToOne(targetEntity="App\Entity\CategoryQuestions", inversedBy="contacts")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $reason;
 
+
     public function __construct()
     {
-        $this->reason = new ArrayCollection();
+
     }
 
     public function getId(): ?int
@@ -84,34 +86,17 @@ class Contact
         return $this;
     }
 
-    /**
-     * @return Collection|CategoryQuestions[]
-     */
-    public function getReason(): Collection
+    public function getReason(): ?CategoryQuestions
     {
         return $this->reason;
     }
 
-    public function addReason(CategoryQuestions $reason): self
+    public function setReason(?CategoryQuestions $reason): self
     {
-        if (!$this->reason->contains($reason)) {
-            $this->reason[] = $reason;
-            $reason->setContact($this);
-        }
+        $this->reason = $reason;
 
         return $this;
     }
 
-    public function removeReason(CategoryQuestions $reason): self
-    {
-        if ($this->reason->contains($reason)) {
-            $this->reason->removeElement($reason);
-            // set the owning side to null (unless already changed)
-            if ($reason->getContact() === $this) {
-                $reason->setContact(null);
-            }
-        }
 
-        return $this;
-    }
 }
