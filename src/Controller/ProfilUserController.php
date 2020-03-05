@@ -8,6 +8,7 @@ use App\Form\ChangePassword;
 use App\Form\UpdateType;
 use App\Repository\UserRepository;
 use App\Repository\AdressRepository;
+use App\Repository\OrderRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,12 +21,17 @@ class ProfilUserController extends AbstractController
      * @Route("/profil/user", name="profil_user")
      */
 
-    public function index(AdressRepository $repoAddresse, Request $request, UserPasswordEncoderInterface $encoder)
+    public function index(AdressRepository $repoAddresse, Request $request, UserPasswordEncoderInterface $encoder, OrderRepository $orderRepo)
     {
         $user = $this->getUser(); 
         $addressUser = $repoAddresse->findBy([
             'user' => $user
         ]);
+
+        $ordersUser = $orderRepo->findBy([
+            'user' =>$user->getId()
+        ]); 
+        
         // Permet de à l'utilisateur de modifier son mot de passe depuis la vue du profil
         $manager = $this->getDoctrine()->getManager();
         $changePassword = new ChangePassword(); 
@@ -52,7 +58,8 @@ class ProfilUserController extends AbstractController
         return $this->render('profil_user/index.html.twig', [
             'addressUser' => $addressUser,
             'orderMode' => false, 
-            'form' => $form->createView() 
+            'form' => $form->createView(), 
+            'orders' => $ordersUser 
         ]);
     }
 
