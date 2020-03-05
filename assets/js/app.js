@@ -12,4 +12,14 @@ import "bootstrap";
 // Need jQuery? Install it with "yarn add jquery", then uncomment to import it.
 // import $ from 'jquery';
 
-console.log('Hello Webpack Encore! Edit me in assets/js/app.js');
+
+
+console.log('Hello');
+
+document.getElementById('add_product_wish').addEventListener("click", function (){
+  document.getElementById('number_product_wish').value ++;
+});
+
+document.getElementById('add_product_cart').addEventListener("click", function (){
+  document.getElementById('number_product_cart').value ++;
+});

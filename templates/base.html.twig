@@ -3,68 +3,94 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        <link href="https://fonts.googleapis.com/css?family=Bangers|Work+Sans:700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Baloo&display=swap" rel="stylesheet">
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
         <style>
+
             .filter{
                 display:block; 
                 position:sticky; 
                 top: 20px; 
             }
             .grid{
+              
                 display:grid; 
                 grid-template-columns: repeat(3, 1fr); 
                 grid-gap: 20px;  
             }
 
+            .navbar_home > li > a {
+              
+              color: black;
+              text-transform: uppercase;
+              font-size: 14px;
+              font-family: 'Baloo', sans-serif;
+              letter-spacing: 2px;
+
+            }
+
+            .navbar_home > li > a:hover {
+
+              color: chartreuse;
+
+            }
+
+            .button_search_home:hover {
+
+              background-color: chartreuse;
+
+            }
+
+
+
         </style>
     </head>
     <body>
         <header>
-<nav class="navbar navbar-expand-lg navbar-light bg-light border" style="position: fixed; bottom: 0; right: 0; left: 0; z-index: 99; height: 80px;">
+<nav class="navbar navbar-expand-lg" style="position: fixed; bottom: 0; right: 0; left: 0; z-index: 99; border: 2px solid black;">
   <a class="navbar-brand" href="{{path('homepage')}}">LOGO</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav w-50 justify-content-between">
+    <ul class="navbar_home navbar-nav w-50 justify-content-around">
       <li class="nav-item p-3">
-        <a class="nav-link" style="font-family: 'Work Sans';" href="{{ path('pageCategory', {'id' : 1}) }}">Vêtements <span class="sr-only">(current)</span></a>
+        <a class="nav-link"  href="{{ path('pageCategory', {'id' : 1}) }}">Vêtements <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item p-3">
-        <a class="nav-link" href="{{ path('pageCategory', {'id' : 2}) }}">Accesoires</a>
+        <a class="nav-link"  href="{{ path('pageCategory', {'id' : 2}) }}">Accessoires</a>
       </li>
       <li class="nav-item p-3">
-        <a class="nav-link" href="{{ path('pageCategory', {'id' : 4}) }}">Maison</a>
+        <a class="nav-link"  href="{{ path('pageCategory', {'id' : 4}) }}">Maison</a>
       </li>
       <li class="nav-item p-3">
-        <a class="nav-link" href="{{ path('pageCategory', {'id' : 5}) }}">Bureau</a>
+        <a class="nav-link"  href="{{ path('pageCategory', {'id' : 5}) }}">Bureau</a>
       </li>    
     </ul>
     <div class="col-3 d-flex flex-row ">
       <form method="POST" action="{{ path('homepage') }}" class="form-inline my-2 my-lg-0">
         <input name="search" class="form-control mr-sm-2" type="search" placeholder="Rechercher" aria-label="Search">
       </form>
-      <button class="btn btn-dark" type="submit">Rechercher</button>
+      <button class="button_search_home btn btn-dark" style="font-family: 'Baloo'; letter-spacing: 2px;" type="submit">Rechercher</button>
     </div>
-      <ul class="navbar-nav mr-auto w-50 justify-content-around">
+      <ul class="navbar_home navbar-nav mr-auto w-50 justify-content-around">
         <li class="nav-item p-3 ">
-            <a class="nav-link" href="{{ path('contact_form') }}">Contact <span class="sr-only">(current)</span></a>
+            <a class="nav-link"  href="{{ path('contact_form') }}">Contact <span class="sr-only">(current)</span></a>
           </li>
       {% if not app.user %}
       <li class="nav-item p-3 ">
-        <a class="nav-link" href="{{ path('security_login') }}"> Connexion <span class="sr-only">(current)</span></a>
+        <a class="nav-link"  href="{{ path('security_login') }}"> Connexion <span class="sr-only">(current)</span></a>
       </li>
-     
+
       {% else %}
         <li class="nav-item p-3 ">
-        <a class="nav-link" href="{{ path('profil_user') }}"> Profil <span class="sr-only">(current)</span></a>
+        <a class="nav-link"  href="{{ path('profil_user') }}"> Profil <span class="sr-only">(current)</span></a>
       </li>
         <li class="nav-item p-3 ">
-        <a class="nav-link" href="{{ path('security_logout') }}"> Deconnexion <span class="sr-only">(current)</span></a>
+        <a class="nav-link"  href="{{ path('security_logout') }}"> Deconnexion <span class="sr-only">(current)</span></a>
       </li>
       {% endif %}
       
@@ -73,7 +99,7 @@
         <a class="nav-link" href="#">WishList</a>
       </li>
       <li class="nav-item p-3 ">
-        <a class="nav-link" href="{{ path('cart_index') }}">Panier</a>
+        <a class="nav-link"  href="{{ path('cart_index') }}">Panier</a>
       </li>          
     </ul>
 
@@ -81,7 +107,6 @@
 </nav>
       </header>
         {% block body %}{% endblock %}
-        
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
