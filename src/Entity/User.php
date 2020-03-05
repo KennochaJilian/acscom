@@ -44,7 +44,7 @@ class User implements UserInterface
     /**
      * @Assert\EqualTo(propertyPath="password", message="Les mots de passe doivent être identitques ! "  )
      */
-    public $confirm_password; 
+    public $confirm_password;  
 
     /**
      * @ORM\Column(type="string", length=255)

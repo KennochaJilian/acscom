@@ -18,7 +18,15 @@
     </div>
 
     <div class="col-md-6">
-     
+     <h2> Modifier votre mot de passe </h2>
+
+     {{form_start(form)}}
+     {{form_row(form.oldPassword)}}
+	{{form_row(form.password.first)}}
+	{{form_row(form.password.second)}}
+	<button class=""  type="submit">Envoyer</button>
+    {{form_end(form)}}
+
     </div>
 
 </div>
