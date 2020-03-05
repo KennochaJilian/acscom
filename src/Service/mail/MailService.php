@@ -15,7 +15,7 @@ class MailService{
     }
 
     public function orderConfirmed($userMail, $userName, $cart, $cartTotal){
-       $message = (new \Swift_Message('Hello Email'))
+        $message = (new \Swift_Message('Commande validée !'))
             ->setFrom('commande@acs.com')
             ->setTo($userMail)
             ->setBody(
@@ -30,8 +30,21 @@ class MailService{
             );
         
         $this->mailer->send($message); 
+    }
 
+    public function recreatePass($user){
 
+        $message = (new \Swift_Message('Mot de passe oublié !'))
+            ->setFrom('motdepasseoublie@acs.com')
+            ->setTo($user->getEmail())
+            ->setBody(
+                $this->templating->render(
+                    'emails/recreatePass.html.twig',[
+                        'user' => $user
+                    ]
+                )
+            );
+        $this->mailer->send($message);
     }
 
 
