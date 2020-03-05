@@ -21,7 +21,7 @@ class ContactFormController extends AbstractController
         $manager = $this->getDoctrine()->getManager();
 
         $contact = new Contact();
-
+        
         $form = $this->createForm(ContactType::class, $contact);
 
         $form->handleRequest($request);

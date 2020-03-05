@@ -22,7 +22,7 @@ class HomepageController extends AbstractController
     {
 
         $data =new SearchData(); 
-        
+        // dd($data);
         $form = $this->createForm(SearchForm::class, $data);
 
         if(!empty($_POST)){

@@ -36,8 +36,8 @@ class ContactType extends AbstractType
     }
 
     public function getBlockPrefix()
-{
-    return ''; 
-}
+    {
+        return ''; 
+    }
 
 }
