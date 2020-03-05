@@ -1,0 +1,36 @@
+<h3> Commande validée !</h3>
+<p> Salut {{name}} ! Ta commande est bien passée dont voici le recapitulatif ! </p>
+
+<table>
+        <thead>
+            <tr>
+                <th>Produit</th>
+                <th>Prix</th>
+                <th>Quantité</th>
+                <th>Total</th>
+               
+            </tr>
+            <tbody>
+                {% for item in cart %}
+                    <tr>
+                        <td>{{ item.product.name }}</td>
+                        <td >{{ item.product.price }} €</td>
+                        <td>{{ item.quantity }} </td>
+                        <td>{{ item.product.price * item.quantity }} €</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot> <tr><td></td></tr>
+                <tr>
+                    <td colspan="3">Total : </td>
+                    <td>{{ total }} €</td>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </thead>
+    </table>
+
+
+<p> En te souhaitant une bonne journée ! </p>
+<p> A bientôt sur acscom </p>
+<p> L'équipe de l'ACS </p>
