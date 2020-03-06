@@ -33,7 +33,10 @@ class ContactFormController extends AbstractController
             $manager->persist($contact);
             $manager->flush();
 
-
+            $this->addFlash(
+                'notice', 
+                'Le message a bien été envoyé, nous vous recontacterons dans les plus brefs delais !'
+            ); 
             return $this->redirectToRoute('homepage');
         }
         

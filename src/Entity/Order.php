@@ -65,6 +65,11 @@ class Order
      */
     private $ordersProducts;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $state ="Commande reçue !";
+
     public function __construct()
     {
         $this->product = new ArrayCollection();
@@ -189,6 +194,18 @@ class Order
                 $ordersProduct->setOrders(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getState(): ?string
+    {
+        return $this->state;
+    }
+
+    public function setState(?string $state): self
+    {
+        $this->state = $state;
 
         return $this;
     }

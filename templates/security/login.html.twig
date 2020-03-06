@@ -3,6 +3,24 @@
 {% block body %}
 
 <div class="container " style="position:absolute;top:40%; left:50%; transform: translate(-50%,-50%);">
+
+    {% if error %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        L'adresse mail ou le mot de passe est incorrect ! 
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endif %}
+    
+    {% for message in app.flashes('notice') %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{ message }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{% endfor %}
     
     <div class="d-flex flex-column border bg-dark text-light" style="margin-bottom: 5%;">
         <h1> Connexion </h1>
@@ -23,7 +41,7 @@
                     <input placeholder="Mot de passe" required name= "_password" type="password" class="form-control">
                 </div>
 
-                <a href="#">Vous avez oublié votre mot de passe ?</a>
+                <a href="{{path('security_forgottenPass')}}">Vous avez oublié votre mot de passe ?</a>
     
                 <div class="form-group">
                     <button class="btn btn-dark w-50 mt-4" type="submit"> SE CONNECTER</button>

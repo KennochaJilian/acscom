@@ -44,7 +44,7 @@ class User implements UserInterface
     /**
      * @Assert\EqualTo(propertyPath="password", message="Les mots de passe doivent être identitques ! "  )
      */
-    public $confirm_password; 
+    public $confirm_password;  
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -75,6 +75,20 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity="App\Entity\Order", mappedBy="user")
      */
     private $orders;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     * @var \DateTime
+     */
+    private $passwordRequestedAt;
+
+    /**
+    * @var string
+    *
+    * @ORM\Column(type="string", length=255, nullable=true)
+    */
+    private $token;
+
 
     public function __construct()
     {
@@ -233,14 +247,45 @@ class User implements UserInterface
         return $this;
     }
 
+    public function getPasswordRequestedAt()
+    {
+        return $this->passwordRequestedAt;
+    }
 
-public function eraseCredentials(){}
+    /*
+     * Set passwordRequestedAt
+     */
+    public function setPasswordRequestedAt($passwordRequestedAt)
+    {
+        $this->passwordRequestedAt = $passwordRequestedAt;
+        return $this;
+    }
 
-public function getSalt(){}
+    /*
+     * Get token
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
 
-public function getRoles(){
-    return ['ROLE_USER']; 
-}
+    /*
+     * Set token
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+        return $this;
+    }
+
+
+    public function eraseCredentials(){}
+
+    public function getSalt(){}
+
+    public function getRoles(){
+        return ['ROLE_USER']; 
+    }
 
 
 }

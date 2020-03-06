@@ -4,11 +4,15 @@ namespace App\Controller;
 
 use App\Entity\Adress;
 use App\Form\AddressType;
-use App\Repository\AdressRepository;
+use App\Form\ChangePassword;
+use App\Form\UpdateType;
 use App\Repository\UserRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\AdressRepository;
+use App\Repository\OrderRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 
 class ProfilUserController extends AbstractController
@@ -17,18 +21,51 @@ class ProfilUserController extends AbstractController
      * @Route("/profil/user", name="profil_user")
      */
 
-    public function index(AdressRepository $repoAddresse)
+    public function index(AdressRepository $repoAddresse, Request $request, UserPasswordEncoderInterface $encoder, OrderRepository $orderRepo)
     {
-        
-
+        $user = $this->getUser(); 
         $addressUser = $repoAddresse->findBy([
-            'user' => $this->getUser()->getId()
+            'user' => $user
         ]);
+
+        $ordersUser = $orderRepo->findBy([
+            'user' =>$user->getId()
+        ]); 
         
+        // Permet de à l'utilisateur de modifier son mot de passe depuis la vue du profil
+        $manager = $this->getDoctrine()->getManager();
+        $changePassword = new ChangePassword(); 
+        $form = $this->createForm(UpdateType::class, $changePassword);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            
+
+            $newpwd = $form->get('password')['first']->getData();
+ 
+            $newEncodedPassword = $encoder->encodePassword($user, $newpwd);
+            $user->setPassword($newEncodedPassword);
+ 
+            $manager->flush();
+
+            $this->addFlash(
+                'notice', 
+                'Le mot de passe a bien été modifié !'
+            ); 
+           
+            return $this->redirectToRoute('profil_user');
+
+        }
+
+
 
         return $this->render('profil_user/index.html.twig', [
             'addressUser' => $addressUser,
-            'orderMode' => false 
+            'orderMode' => false, 
+            'form' => $form->createView(), 
+            'orders' => $ordersUser 
         ]);
     }
 

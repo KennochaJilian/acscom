@@ -12,9 +12,14 @@ use App\Service\Cart\CartService;
 use App\Repository\ProductRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+<<<<<<< HEAD
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+=======
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+>>>>>>> 0e8c2e0a5188660a755da13087b6e31c852d4999
 
 class HomepageController extends AbstractController
 {
@@ -22,9 +27,9 @@ class HomepageController extends AbstractController
      * @Route("/", name="homepage")
      */
 
-    public function index(ProductRepository $repositery, Request $request)
+    public function index(ProductRepository $repositery, Request $request, AuthenticationUtils $authenticationUtils)
     {
-
+       
         $data =new SearchData(); 
         $form = $this->createForm(SearchForm::class, $data);
 
@@ -36,7 +41,7 @@ class HomepageController extends AbstractController
 
         return $this->render('homepage/index.html.twig', [
             'products' => $products,
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ]);
     }
 
