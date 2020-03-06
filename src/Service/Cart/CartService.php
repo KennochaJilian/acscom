@@ -4,6 +4,7 @@ namespace App\Service\Cart;
 
 use App\Repository\ProductRepository;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 class CartService{
 
@@ -28,7 +29,27 @@ class CartService{
 
         $this->session->set('panier', $panier);
     }
+//////////////////////////////////////////////////////////////////////////////////////////////
+    public function addFromProduct(int $id){
+        // $panier = $this->session->get('panier', []);
+        // // $quantity = $this->session->get('quantity');
+       
 
+        // if(!empty($quantity)){ 
+        //     dd("coucou je passe dans le if");
+        //     if(!empty($panier[$id])){
+        //         dd("coucou je passe dans le if");
+        //         // $quantity = $_POST['quantity']; 
+        //         //$panier[$id] = $quantity ++;
+                
+        //     } else{
+        //         $panier[$id] = $quantity +1;
+        //     }
+        // }
+        
+        // $this->session->set('panier', $panier);
+    }
+/////////////////////////////////////////////////////////////////////////////////////////////////
     public function remove(int $id){
 
         $panier = $this->session->get('panier', []);
@@ -51,8 +72,8 @@ class CartService{
                 'product' => $this->productRepository->find($id),
                 'quantity' => $quantity
             ];
-            
         }
+        
         return $panierWithData;
     }
 
@@ -67,9 +88,11 @@ class CartService{
         return $total;
     }
 
-    public function modifQuantity(int $id){
-        $panier = $this->session->get('panier'); 
-        $panier[$id] = $_POST['quantity'];
+    public function modifQuantity(int $id, int $quantity){
+        $panier = $this->session->get('panier',[]); 
+        
+        //$panier[$id] = $_POST['quantity'];
+        $panier[$id] = $quantity;
         $this->session->set('panier', $panier);
     }
 

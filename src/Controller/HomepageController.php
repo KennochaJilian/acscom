@@ -7,11 +7,19 @@ use App\Entity\Product;
 use App\Data\SearchData;
 use App\Form\SearchForm;
 use App\Form\SearchType;
+use App\Entity\OrdersProducts;
+use App\Service\Cart\CartService;
 use App\Repository\ProductRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+<<<<<<< HEAD
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+=======
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+>>>>>>> 0e8c2e0a5188660a755da13087b6e31c852d4999
 
 class HomepageController extends AbstractController
 {
@@ -41,18 +49,28 @@ class HomepageController extends AbstractController
      * 
      *@Route ("/pageproduct/{id}", name="pageProduct")
      */
-    public function _product($id){
+    public function _product($id, CartService $cartService, Request $request){
 
         $repo = $this->getDoctrine()->getRepository(Product::class);
 
+        
+        $form = $this->createFormBuilder()
+            ->add('quantity', NumberType::class)
+            ->add('Ajouter au panier', SubmitType::class)
+            ->getForm();
+
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            $quantity = intval($_POST['form']['quantity']);
+            $cartService->modifQuantity($id,$quantity);
+            return $this->redirectToRoute("homepage"); 
+        }
+
         $product = $repo->find($id);
-
         return $this->render('product/_product.html.twig', [
-
-        'product' => $product
-        
-        
-            ]);
+        'product' => $product,
+        'form' => $form->createView()
+        ]);
     }
     
 }
