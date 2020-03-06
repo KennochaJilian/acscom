@@ -5,10 +5,10 @@ namespace App\Controller;
 use App\Entity\Adress;
 use App\Form\AddressType;
 use App\Form\ChangePassword;
-use App\Form\UpdateType;
+use App\Form\UpdatePassType;
 use App\Repository\UserRepository;
-use App\Repository\AdressRepository;
 use App\Repository\OrderRepository;
+use App\Repository\AdressRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -35,7 +35,7 @@ class ProfilUserController extends AbstractController
         // Permet de à l'utilisateur de modifier son mot de passe depuis la vue du profil
         $manager = $this->getDoctrine()->getManager();
         $changePassword = new ChangePassword(); 
-        $form = $this->createForm(UpdateType::class, $changePassword);
+        $form = $this->createForm(UpdatePassType::class, $changePassword);
 
         $form->handleRequest($request);
 
