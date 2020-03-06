@@ -38,19 +38,23 @@
                                 <p>{{ product.price}}</p>
                             </div>
                             <div class="col-8">
-                                <div class="d-flex flex-column border">
-                                    <div class="d-flex flex-row justify-content-between align-items-center mb-2">
-                                        <button id="add_product_wish">+</button>
-                                        <input id="number_product_wish" type="text" value="0">
-                                        <p>Ajouter à ma wishlist</p>
+                                {{form(form)}}
+                                {# <form method="POST" action="{{ path('cart_modif', {'id' : product.id}) }}">
+                                    <div class="d-flex flex-column border">
+                                        <div class="d-flex flex-row justify-content-between align-items-center mb-2">
+                                            <button onclick="return false" id="add_product_wish">+</button>
+                                            <input id="number_product_wish" type="text" value="0">
+                                            <p>Ajouter à ma wishlist</p>
+                                        </div>
+                                        <div class="d-flex flex-row justify-content-between align-items-center mb-4">
+                                            <button id="add_product_cart" onclick="return false">+</button>
+                                            <input id="number_product_cart" name="quantity" type="text" value="1">
+                                            <p>Ajouter au panier</p>
+                                        </div>
+                                        <button><a href="{{ path('cart_addFromProduct', {'id' : product.id}) }}">Ajouter au panier</a></button>
+                                        
                                     </div>
-                                    <div class="d-flex flex-row justify-content-between align-items-center mb-4">
-                                        <button id="add_product_cart">+</button>
-                                        <input id="number_product_cart" type="text" value="1">
-                                        <p>Ajouter au panier</p>
-                                    </div>
-                                    <a href="{{ path('cart_add', {'id' : product.id}) }}">Ajouter au panier</a>
-                                </div>
+                                </form> #}
                             </div>
                         </div>
                         <div class="row">

@@ -17,7 +17,7 @@ class ContactFormController extends AbstractController
      */
     public function form(Request $request)
     {
-
+        // dd($request);
         $manager = $this->getDoctrine()->getManager();
 
         $contact = new Contact();
