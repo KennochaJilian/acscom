@@ -34,6 +34,7 @@
             .navbar_home > li > a:hover {
 
               color: chartreuse;
+              text-decoration: none;
 
             }
 
@@ -49,14 +50,14 @@
     </head>
     <body>
         <header>
-<nav class="navbar navbar-expand-lg" style="position: fixed; bottom: 0; right: 0; left: 0; z-index: 99; border: 2px solid black;">
-  <a class="navbar-brand" href="{{path('homepage')}}">LOGO</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+    <nav class="navbar navbar-expand" style="height: 60px;position: fixed; bottom: 0; right: 0; left: 0; z-index: 99; background-color: white; border-top: 1px solid black;">
+      <a class="navbar-brand" href="{{path('homepage')}}"><img src="{{ asset('build/images/logo.png' ) }}" alt="LOGO"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar_home navbar-nav w-50 justify-content-around">
+    <ul class="navbar_home navbar-nav justify-content-around">
       <li class="nav-item p-3">
         <a class="nav-link"  href="{{ path('pageCategory', {'id' : 1}) }}">Vêtements <span class="sr-only">(current)</span></a>
       </li>
@@ -70,13 +71,13 @@
         <a class="nav-link"  href="{{ path('pageCategory', {'id' : 5}) }}">Bureau</a>
       </li>    
     </ul>
-    <div class="col-3 d-flex flex-row ">
+    <div class="col-3 d-flex flex-row justify-content-center">
       <form method="POST" action="{{ path('homepage') }}" class="form-inline my-2 my-lg-0">
-        <input name="search" class="form-control mr-sm-2" type="search" placeholder="Rechercher" aria-label="Search">
+        <input name="search" class="form-control mr-sm-2 w-100" type="search" placeholder="Rechercher" aria-label="Search">
       </form>
       <button class="button_search_home btn btn-dark" style="font-family: 'Baloo'; letter-spacing: 2px;" type="submit">Rechercher</button>
     </div>
-      <ul class="navbar_home navbar-nav mr-auto w-50 justify-content-around">
+      <ul class="navbar_home navbar-nav mr-auto justify-content-around">
         <li class="nav-item p-3 ">
             <a class="nav-link"  href="{{ path('contact_form') }}">Contact <span class="sr-only">(current)</span></a>
           </li>

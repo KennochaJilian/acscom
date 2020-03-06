@@ -1,20 +1,20 @@
-<div class="col-md-3">
+<div class="col-md-4">
     <div class="card mb-4 box-shadow">
-    <img src="" width="100%" alt="Card image cap"/>
+    <img src="http://placehold.it/300x200" width="100%" alt="Card image cap"/>
     <div class="card-body">
         <h4> {{product.name}} </h4> 
         <p class="card-text"> {{ product.cardDescription}}</p>
-        <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex flex-row-reverse justify-content-between align-items-center">
+        <div>
+            <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{{path ('cart_add', {'id' : product.id})}}">Ajouter au panier</a></button>
+        </div>
         <div class="btn-group">
             <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{{path ('pageProduct', {'id' : product.id})}}">View</a></button>
         </div>
-        <div>
-            <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{{ path('cart_add', {'id' : product.id}) }}">Ajouter au panier</a></button>
-        </div>
-        <small class="text-muted">{{product.price | number_format(0,',', ' ')}} €</small>
+        <strong class="text-muted" style="font-size: 20px;">{{product.price | number_format(0,',', ' ')}} €</strong>
         </div>
         <div>
-            <em class="text-muted text-primary text-italic">
+            <em class="text-muted text-primary text-italic ">
                 #{{product.category.name}}
                 </em>
                 
