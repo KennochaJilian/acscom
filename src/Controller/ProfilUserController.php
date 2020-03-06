@@ -41,6 +41,8 @@ class ProfilUserController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid())
         {
+            
+
             $newpwd = $form->get('password')['first']->getData();
  
             $newEncodedPassword = $encoder->encodePassword($user, $newpwd);
@@ -48,7 +50,11 @@ class ProfilUserController extends AbstractController
  
             $manager->flush();
 
-
+            $this->addFlash(
+                'notice', 
+                'Le mot de passe a bien été modifié !'
+            ); 
+           
             return $this->redirectToRoute('profil_user');
 
         }

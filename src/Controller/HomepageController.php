@@ -3,14 +3,15 @@
 namespace App\Controller;
 
 use App\Data\Search;
-use App\Data\SearchData;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Product;
+use App\Data\SearchData;
 use App\Form\SearchForm;
 use App\Form\SearchType;
 use App\Repository\ProductRepository;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class HomepageController extends AbstractController
 {
@@ -18,11 +19,10 @@ class HomepageController extends AbstractController
      * @Route("/", name="homepage")
      */
 
-    public function index(ProductRepository $repositery, Request $request)
+    public function index(ProductRepository $repositery, Request $request, AuthenticationUtils $authenticationUtils)
     {
-
+       
         $data =new SearchData(); 
-        // dd($data);
         $form = $this->createForm(SearchForm::class, $data);
 
         if(!empty($_POST)){
@@ -33,7 +33,7 @@ class HomepageController extends AbstractController
 
         return $this->render('homepage/index.html.twig', [
             'products' => $products,
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ]);
     }
 
