@@ -3,12 +3,16 @@
 namespace App\Controller;
 
 use App\Entity\Adress;
+use App\Entity\OrdersProducts;
 use App\Form\AddressType;
 use App\Form\ChangePassword;
 use App\Form\UpdatePassType;
 use App\Repository\UserRepository;
 use App\Repository\OrderRepository;
 use App\Repository\AdressRepository;
+use App\Repository\OrdersProductsRepository;
+use App\Repository\ProductRepository;
+use App\Service\Profil\ProfilService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -21,17 +25,12 @@ class ProfilUserController extends AbstractController
      * @Route("/profil/user", name="profil_user")
      */
 
-    public function index(AdressRepository $repoAddresse, Request $request, UserPasswordEncoderInterface $encoder, OrderRepository $orderRepo)
+    public function index(Request $request, UserPasswordEncoderInterface $encoder, ProfilService $profilService )
     {
         $user = $this->getUser(); 
-        $addressUser = $repoAddresse->findBy([
-            'user' => $user
-        ]);
-
-        $ordersUser = $orderRepo->findBy([
-            'user' =>$user->getId()
-        ]); 
-        
+        $addressUser = $profilService->getAddress($user);
+        $ordersUser = $profilService->getOrders($user);
+     
         // Permet de à l'utilisateur de modifier son mot de passe depuis la vue du profil
         $manager = $this->getDoctrine()->getManager();
         $changePassword = new ChangePassword(); 
