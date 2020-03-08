@@ -13,6 +13,7 @@ use App\Repository\AdressRepository;
 use App\Repository\UserRepository;
 use App\Service\Cart\CartService;
 use App\Service\mail\MailService;
+use App\Service\PayPal\PayPalService;
 use Symfony\Component\HttpFoundation\Request;
 
 
@@ -21,7 +22,7 @@ class OrderController extends AbstractController
     /**
      * @Route("/order", name="order")
      */
-    public function index(AdressRepository $repoAddresse, Request $request, UserRepository $repositery, CartService $cartService, MailService $mailService)
+    public function index(AdressRepository $repoAddresse, Request $request, UserRepository $repositery, CartService $cartService, MailService $mailService, PayPalService $paypalService)
     {
         $user = $repositery->findBy([
             'id' => $this->getUser()->getId()
@@ -54,6 +55,9 @@ class OrderController extends AbstractController
         if($formOrder->isSubmitted() && $formOrder->isValid()){
            $cartValid = $cartService->getFullCart(); 
            $cartTotal = $cartService->getTotal();
+
+           $paypalService->createNewPayement($cartTotal);
+           die(); 
             $order->setOrderPriceTotal($cartTotal);
             $order->setUser($this->getUser()); 
             foreach($cartValid as $product)
