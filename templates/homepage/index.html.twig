@@ -9,21 +9,27 @@
    <main role="main">
 
 
-      <div class="album py-5 bg-light">
+      <div class="album py-2 bg-light">
         <div class="container-fluid">
           <div class="row">
 
             <div class="col-md-2">
           
-              {% include 'product/_filter.html.twig' with {form:form} only %}
+            {% include 'product/_filter.html.twig' with {form:form} only %}
             </div>
 
-            <div class="col-md-8 d-flex flex-wrap">
-              
-              <div class="col-8 border mb-4">
+            <div class="col-md-8 d-flex flex-wrap no-gutters">
 
-                ROW
+
+              <div class="col-12 border bg-danger">
+                <img class="card-img img-fluid" src="http://placehold.it/600x200" alt="Card image">
               </div>
+              
+              
+              <div class="col-8 border bg-danger">
+
+              </div>
+              
               
               {% for product in products %}
                 {% include 'product/_card.html.twig' with {product:product} only %} 

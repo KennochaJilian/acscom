@@ -2,9 +2,9 @@
 
 {% block body %}
 
-    <div class="container-fluid product_page">
+    <div class="container-fluid product_page my-2">
 
-        <div class="d-flex flex-row justify-content-center align-items-end">
+        <div class="d-flex flex-row justify-content-center align-items-center no-gutters">
 
             <div class="d-flex flex-column col-6 image_product slider_cart">
 
@@ -20,7 +20,7 @@
 
             </div>
 
-            <div class="d-flex flex-column col-4 image_info mmb-4 border px-2 ">
+            <div class="d-flex flex-column col-4 image_info px-2 ">
 
                 <div class="row">
                     <div class="col-12 ">
@@ -30,25 +30,31 @@
                             <div class="d-flex flex-column col-4 w-100 justify-content-center text-center ">
                                 <p style="font-size: 40px;">{{ product.price}} €</p>
                             </div>
-                            <div class="col-8 border">
-                                <div class="d-flex flex-column ">
-                                    <div class="d-flex flex-row justify-content-between align-items-center mb-2  ">
-                                        <div class="btn btn-dark">+</div>
-                                        Ajouter à ma wishlist
+                            <div class="col-8">
+                                <div class="d-flex flex-column">
+                                    <div class="d-flex flex-row justify-content-start align-items-center mb-2">
+                                        <button id="add_product_wish">+</button>
+                                        <input class="w-25 text-center" id="number_product_wish" type="text" value="0">
+                                        <p>Ajouter à ma wishlist</p>
                                     </div>
-                                    <div class="d-flex flex-row justify-content-between align-items-center mb-2">
-                                        <div class="btn btn-dark">+</div>
-                                        Ajouter au panier
+                                    <div class="d-flex flex-row justify-content-start align-items-center mb-4">
+                                        <button id="add_product_cart">+</button>
+                                        <input class="w-25 text-center" id="number_product_cart" type="text" value="1">
+                                        <p>Ajouter au panier</p>
                                     </div>
                                     <a href="{{ path('cart_add', {'id' : product.id}) }}">Ajouter au panier</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+
+                        <div class="row no-gutters">
+
                             <div class="col-12 ">
                             <h4>Produits complémentaires</h4>
                             <p>Lorem, ipsum dolor sit amet cus! Accusantium, deleniti consequuntur! Facere repudiandae aliquam iste cum quidem sit voluptatibus.</p>
-                                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                            </div>
+                            <div class="col-12">
+                            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                                     <div class="carousel-inner">
                                     <div class="carousel-item active">
                                         <img class="d-block w-100" src="http://placehold.it/300x200" alt="First slide">

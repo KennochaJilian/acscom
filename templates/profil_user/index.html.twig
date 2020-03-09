@@ -14,11 +14,28 @@
         {% include 'address/_cardAddress.html.twig' with {address:address, orderMode:orderMode} only %}
     {% endfor %}
     <h2>Historique de commande </h2>
+    {% if not orders is empty %}
+    {% for order in orders %}
+        <p> Commande passée le : {{order.orderDate | date("d/m/Y") }} </p>
+        <p> Statut de la commande: {{order.state}} </p>
+    {% endfor %}
+    {% else %}
+        <p> Vous n'avez pas encore commandé sur notre site :( </p>
+    {% endif %}
+
     <h2> Moyens de paiement </h2>
     </div>
 
     <div class="col-md-6">
-     
+     <h2> Modifier votre mot de passe </h2>
+
+     {{form_start(form)}}
+     {{form_row(form.oldPassword)}}
+	{{form_row(form.password.first)}}
+	{{form_row(form.password.second)}}
+	<button class=""  type="submit">Envoyer</button>
+    {{form_end(form)}}
+
     </div>
 
 </div>
