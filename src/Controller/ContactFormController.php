@@ -17,7 +17,7 @@ class ContactFormController extends AbstractController
      */
     public function form(Request $request)
     {
-
+        // dd($request);
         $manager = $this->getDoctrine()->getManager();
 
         $contact = new Contact();
@@ -33,7 +33,10 @@ class ContactFormController extends AbstractController
             $manager->persist($contact);
             $manager->flush();
 
-
+            $this->addFlash(
+                'notice', 
+                'Le message a bien été envoyé, nous vous recontacterons dans les plus brefs delais !'
+            ); 
             return $this->redirectToRoute('homepage');
         }
         

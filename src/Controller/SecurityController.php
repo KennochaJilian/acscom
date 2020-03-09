@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoder;
-
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -46,6 +46,10 @@ class SecurityController extends AbstractController
             $manager->persist($user); 
             $manager->flush();
 
+            $this->addFlash(
+                'notice', 
+                'Votre compte a bien été créé !'
+            ); 
             return $this->redirectToRoute('security_login'); 
         }
 
@@ -59,11 +63,18 @@ class SecurityController extends AbstractController
     * @Route("/login", name="security_login") 
     */
 
-    public function login()
+    public function login(AuthenticationUtils $authenticationUtils)
     {
-        return $this->render('security/login.html.twig');
+        $error = $authenticationUtils->getLastAuthenticationError();
+        return $this->render('security/login.html.twig',[
+            'error' => $error
+        ]);
 
     }
+
+
+
+
 
     /**
     * @Route("/logout", name="security_logout") 

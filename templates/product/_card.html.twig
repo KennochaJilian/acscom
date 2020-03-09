@@ -16,7 +16,7 @@
                 <strong class="text-muted" style="font-size: 30px;">{{product.price | number_format(0,',', ' ')}} €</strong>
 
                 <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-dark btn-outline-secondary"><a href="{{path ('cart_add', {'id' : product.id})}}">Ajouter au panier</a></button>
+                    <button type="button" class="btn btn-sm btn-dark btn-outline-secondary"><a class="js_addCartLink" href="{{path ('cart_add', {'id' : product.id})}}">Ajouter au panier</a></button>
                 </div>
 
                 </div>
