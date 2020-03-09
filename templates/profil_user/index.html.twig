@@ -28,9 +28,15 @@
     {% if not orders is empty %}
     {% for order in orders %}
         <p> Commande passée le : {{order.orderDate | date("d/m/Y") }} </p>
-        <p> Statut de la commande: {{order.state}} </p>
+        <p> Statut de la commande : {{order.state}} </p>
+        
+
+        {% for product in order.ordersProducts %}
+            <p> {{product.product.name}} Quantité : {{product.quantity}}  </p>
+        {% endfor %}
         
     {% endfor %}
+
     {% else %}
         <p> Vous n'avez pas encore commandé sur notre site :( </p>
     {% endif %}
@@ -39,10 +45,10 @@
     </div>
 
     <div class="col-md-6">
-     <h2> Modifier votre mot de passe </h2>
+        <h2> Modifier votre mot de passe </h2>
 
-     {{form_start(form)}}
-     {{form_row(form.oldPassword)}}
+    {{form_start(form)}}
+    {{form_row(form.oldPassword)}}
 	{{form_row(form.password.first)}}
 	{{form_row(form.password.second)}}
 	<button class=""  type="submit">Envoyer</button>

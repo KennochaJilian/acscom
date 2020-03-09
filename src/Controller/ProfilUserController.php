@@ -30,7 +30,7 @@ class ProfilUserController extends AbstractController
         $user = $this->getUser(); 
         $addressUser = $profilService->getAddress($user);
         $ordersUser = $profilService->getOrders($user);
-     
+    
         // Permet de à l'utilisateur de modifier son mot de passe depuis la vue du profil
         $manager = $this->getDoctrine()->getManager();
         $changePassword = new ChangePassword(); 
@@ -43,17 +43,17 @@ class ProfilUserController extends AbstractController
             
 
             $newpwd = $form->get('password')['first']->getData();
- 
+
             $newEncodedPassword = $encoder->encodePassword($user, $newpwd);
             $user->setPassword($newEncodedPassword);
- 
+
             $manager->flush();
 
             $this->addFlash(
                 'notice', 
                 'Le mot de passe a bien été modifié !'
             ); 
-           
+        
             return $this->redirectToRoute('profil_user');
 
         }
@@ -82,7 +82,7 @@ class ProfilUserController extends AbstractController
         }
         
         $form = $this->createForm(AddressType::class, $address);
-       
+    
         $form->handleRequest($request); 
 
         if($form->isSubmitted() && $form->isValid()){

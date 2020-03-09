@@ -31,7 +31,6 @@ class ProfilService
 
     public function getAddress($user)
     {
-    
         return  $this->repoAddress->findBy([
             'user' => $user
         ]);
@@ -40,13 +39,8 @@ class ProfilService
     public function getOrders($user)
     {
         return $this->orderRepo->findBy([
-                'user' =>$user->getId()
+            'user' =>$user->getId()
         ]); 
     }
-
-
-
-
-
 
 }
