@@ -56,6 +56,9 @@ class CartService{
 
         if(!empty($panier[$id])) {
             unset($panier[$id]);
+            $this->session->set('discount', []);
+            $this->session->set('discountPromo', []);
+
         }
         $this->session->set('panier', $panier);
     
@@ -96,9 +99,18 @@ class CartService{
         $this->session->set('panier', $panier);
     }
 
-    public function removeAllCart(){
-    $panier = []; 
-    $this->session->set('panier', $panier);
+    public function removeAllCart(){ 
+    $this->session->set('panier', []);
+    $this->session->set('discount', []);
+    $this->session->set('discountPromo', []);
+    }
+
+    public function addDiscount($discount){
+        $total = $this->getTotal();
+        $total = round($total-($total * $discount), 2);
+        $this->session->set('discount', $total );
+        $this->session->set('discountPromo', $discount );
+        return $total;
     }
 
 }

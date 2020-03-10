@@ -45,7 +45,7 @@ class HomepageController extends AbstractController
      * 
      *@Route ("/pageproduct/{id}", name="pageProduct")
      */
-    public function _product($id, CartService $cartService, Request $request){
+    public function _product($id, CartService $cartService, Request $request, ProductRepository $productsRepo){
 
         $repo = $this->getDoctrine()->getRepository(Product::class);
 
@@ -61,11 +61,14 @@ class HomepageController extends AbstractController
             $cartService->modifQuantity($id,$quantity);
             return $this->redirectToRoute("homepage"); 
         }
-
+        
         $product = $repo->find($id);
+        $productsAssociated = $productsRepo->getProductAssociated(16); 
+      
         return $this->render('product/_product.html.twig', [
         'product' => $product,
-        'form' => $form->createView()
+        'form' => $form->createView(),
+        'productsAssociated' => $productsAssociated
         ]);
     }
     
