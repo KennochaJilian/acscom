@@ -1,2 +1,31 @@
 @import "~bootstrap";
 
+
+
+.navbar_home > li > a {
+  
+  color: black;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-family: 'Baloo', sans-serif;
+  letter-spacing: 2px;
+
+}
+
+.navbar_home > li > a:hover {
+
+  color: chartreuse;
+  text-decoration: none;
+
+}
+
+.button_search_home:hover {
+
+  background-color: chartreuse;
+
+}
+
+.test {
+
+    font-size: 55px;
+}

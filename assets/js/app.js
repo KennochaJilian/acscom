@@ -16,10 +16,56 @@ import "bootstrap";
 
 console.log('Hello');
 
-document.getElementById('add_product_wish').addEventListener("click", function (){
-  document.getElementById('number_product_wish').value ++;
-});
+// document.getElementById('add_product_wish').addEventListener("click", function (){
+//   document.getElementById('number_product_wish').value ++;
+// });
 
-document.getElementById('add_product_cart').addEventListener("click", function (){
-  document.getElementById('number_product_cart').value ++;
+// document.getElementById('add_product_cart').addEventListener("click", function (){
+//   document.getElementById('number_product_cart').value ++;
+// });
+
+
+
+//AXIOS// AJAX // AJOUT AU PANIER
+
+window.addEventListener("DOMContentLoaded", function(){
+
+  let addCartLinks = document.getElementsByClassName("js_addCartLink");
+
+  function onClickAddCart(event){
+    event.preventDefault();
+
+    const url = this.href;
+
+    axios.get(url).then(function(response){
+      console.log(response.data.code);
+      if (response.data.code == 200){
+        addToast(response.data.message)
+      } 
+    });
+
+  } 
+
+  function addToast(message){
+
+    let containerToast = document.querySelector('#js_containerToast');
+    let toast = document.getElementById("toastModel"); 
+    let newToast = toast.cloneNode(containerToast); 
+    console.log(newToast);
+    newToast.querySelector('.toast-body').innerText = `Le produit ${message} a bien été ajouté au panier`;
+    containerToast.appendChild(newToast)
+    newToast.classList.add("show");
+
+
+  }
+
+  if(addCartLinks.length != 0){
+
+    addCartLinks.forEach(function(link){
+      link.addEventListener('click', onClickAddCart)
+    })
+
+
+  }
+
 });

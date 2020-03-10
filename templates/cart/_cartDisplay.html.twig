@@ -1,47 +1,174 @@
-<table class="table">
-        <thead>
-            <tr>
-                <th>Produit</th>
-                <th>Prix</th>
-                <th>Quantité</th>
-                <th>Total</th>
-                <th></th>
-            </tr>
-            <tbody>
-                {% for item in items %}
+
+<div class="container ">
+    <div class="d-flex flex-row my-4">
+        <h1>Votre panier</h1>
+    </div>
+    <div class="d-flex flex-row justify-content-start no-gutters ">
+        <div class="col-8 table_part">
+            <table class="table border">
+                <thead>
                     <tr>
-                        <td>{{ item.product.name }}</td>
-                        <td >{{ item.product.price }} €</td>
-                        <td>
-                            <form method="POST" action="{{ path('cart_modif', {'id' : item.product.id}) }}"> 
-                                <select name="quantity" class="" id="inlineFormCustomSelect">
-                                    <option selected> {{ item.quantity }}</option>
-                                    {% for i in 1..item.product.quantity %}
-                                    <option value="{{i}}">{{i}}</option>
-                                    {% endfor %}
-                                    
-                                </select>
-                                <button type="submit" class="btn btn-primary btn-sm">Modifier</button>
-                            </form>
-                        </td>
-                        <td>{{ item.product.price * item.quantity }} €</td>
-                        <td>
-                            <a href="{{ path('cart_remove', {'id' : item.product.id}) }}" class="btn btn-danger btn-sm">Supprimer</a>
-                        </td>
+                        <th>Produit</th>
+                        <th>Prix</th>
+                        <th>Quantité</th>
+                        <th>Total</th>
+                        <th></th>
                     </tr>
-                {% endfor %}
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="3" class="text-right"> Option cadeau :  </td>
-                    {# <td> <a href="{{ path('order_optionGift')}}" class="btn btn-success btn-sm"> Oui ! </a></td>
-                    <td></td> #}
-                </tr>
-                <tr>
-                    <td colspan="3" class="text-right">Total : </td>
-                    <td>{{ total }} €</td>
-                    <td></td>
-                </tr>
-            </tfoot>
-        </thead>
-    </table>
+                    <tbody>
+                        {% for item in items %}
+                            <tr>
+                                
+                                <td>{{ item.product.name }}</td>
+                                <td >{{ item.product.price }} €</td>
+                                <td>
+                                    <form method="POST" action="{{ path('cart_modif', {'id' : item.product.id}) }}"> 
+                                        <select name="quantity" class="" id="inlineFormCustomSelect">
+                                            <option selected> {{ item.quantity }}</option>
+                                            {% for i in 1..item.product.quantity %}
+                                            <option value="{{i}}">{{i}}</option>
+                                            {% endfor %}
+                                            
+                                        </select>
+                                        <button type="submit" class="btn btn-dark btn-sm">Modifier</button>
+                                    </form> 
+                                </td>
+                                <td>{{ item.product.price * item.quantity }} €</td>
+                                <td>
+                                    <a href="{{ path('cart_remove', {'id' : item.product.id}) }}" class="btn btn-danger btn-sm">Supprimer</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3" class="text-right"> Option cadeau :  </td>
+                            {# <td> <a href="{{ path('order_optionGift')}}" class="btn btn-success btn-sm"> Oui ! </a></td>
+                            <td></td> #}
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="text-right">Total : </td>
+                            <td>{{ total }} €</td>
+                            <td></td>
+                        </tr>
+                    </tfoot>
+                </thead>
+            </table>
+            <div>
+                        <div id="multi-item-example" class="carousel slide carousel-fade carousel-multi-item" data-ride="carousel">
+
+            <!--Slides-->
+                        <div class="carousel-inner" role="listbox">
+                        
+            <!--First slide-->
+                        <div class="carousel-item active">
+                        
+                                <div class="row border">
+                        
+                                    <div class="col-md-6">
+                                        <div class="card mb-2">
+                                                <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg"
+                                                alt="Card image cap">
+                                            <div class="card-body">
+                                                <h4 class="card-title">Produit</h4>
+                                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                                                card's content.</p>
+                                                <a class="btn btn-dark">Button</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                        
+                                    <div class="col-md-6 clearfix d-none d-md-block">
+                                        <div class="card mb-2">
+                                                <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(18).jpg"
+                                                alt="Card image cap">
+                                            <div class="card-body">
+                                                <h4 class="card-title">Produit</h4>
+                                                <p class="card-text">Some quick example text to build on the Produit and make up the bulk of the
+                                                card's content.</p>
+                                                <a class="btn btn-primary">Button</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+            <!--/.First slide-->
+
+            <!--Second slide-->
+                        <div class="carousel-item">
+                            <div class="row">
+                                <div class="col-md-6">
+                                <div class="card mb-2">
+                                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg"
+                                    alt="Card image cap">
+                                    <div class="card-body">
+                                    <h4 class="card-title">Produit</h4>
+                                    <p class="card-text">Some quick example text to build on the Produit and make up the bulk of the
+                                        card's content.</p>
+                                    <a class="btn btn-primary">Button</a>
+                                    </div>
+                                </div>
+                                </div>
+
+                                <div class="col-md-6 clearfix d-none d-md-block">
+                                    <div class="card mb-2">
+                                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(47).jpg"
+                                        alt="Card image cap">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Produit</h4>
+                                        <p class="card-text">Some quick example text to build on the Produit and make up the bulk of the
+                                        card's content.</p>
+                                        <a class="btn btn-primary">Button</a>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex flex-row  justify-content-start">
+            <div class="col">
+                <div class="d-flex flex-row  justify-content-around align-items-center p-4 border">
+                    <p>KETCHUP Lardon</p>
+                    <img src="http://placehold.it/100x100" alt="">
+                </div>
+                <div class="d-flex flex-row  justify-content-between border p-4">
+                    <h4>Code promo</h4>
+                    <input class="w-25 text-center" id="number_product_cart" type="text" value="1">
+                </div>
+                <div class="d-flex flex-row justify-content-between p-4 border">
+                    <p>TAXE :</p>
+                    <p>{{ total }}€</p>
+                </div>
+                <div class="d-flex flex-column justify-content-between border p-4">
+                    <p>Mode de livraison:</p>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                        Express
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" disabled>
+                        <label class="form-check-label" for="defaultCheck2">
+                        Standard
+                        </label>
+                    </div>
+                </div>
+                <div class="d-flex flex-row justify-content-between  p-4 border">
+                    <p>Total :</p>
+                    <p>{{ total }}€</p>
+                </div>
+                <div class="d-flex flex-row border">
+                    <button class="btn-danger w-100" style="height:80px;">NEXT STEP</button>
+                </div>
+                <div class="d-flex flex-row border">
+                    <button class="btn-dark w-100" style="height:80px;">BACK TO STORE</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>

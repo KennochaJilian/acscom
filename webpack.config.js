@@ -24,6 +24,82 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/js/app.js')
+
+    // TEMPLATE //
+    
+    // SECURITY
+
+    .addEntry('resetPass', './assets/css/Security/resetPass.css')
+    .addEntry('registration', './assets/css/Security/registration.css')
+    .addEntry('login', './assets/css/Security/login.css')
+    .addEntry('indexSecurity', './assets/css/Security/indexSecurity.css')
+    .addEntry('forgottenPass', './assets/css/Security/forgottenPass.css')
+
+    // PROFIL USER
+
+    .addEntry('index', './assets/css/home.css')
+    .addEntry('update', './assets/css/home.css')
+
+    // PRODUCT
+
+    .addEntry('_card', './assets/css/_card.css')
+    .addEntry('_filter', './assets/css/_filter.css')
+    .addEntry('_product', './assets/css/_product.css')
+
+    //ORDER
+
+    .addEntry('check_order', './assets/css/check_order.css')
+    .addEntry('indexOrder', './assets/css/indexOrder.css')
+
+    // NAVBAR
+
+    .addEntry('indexNavbar', './assets/css/indexNavbar.css')
+
+    // HOMEPAGE
+
+    .addEntry('indexHomepage', './assets/css/indexHomepage.css')
+
+    // EMAILS
+
+    .addEntry('orderConfirmed', './assets/css/orderConfirmed.css')
+    .addEntry('recreatePass', './assets/css/recreatePass.css')
+
+    // CONTACT_FORM
+
+    .addEntry('indexContact', './assets/css/indexContact.css')
+
+    // CART
+
+    .addEntry('_cartDisplay', './assets/css/_cartDisplay.css')
+    .addEntry('indexCart', './assets/css/indexCart.css')
+
+    // ADDRESS
+
+    .addEntry('_cardAddress', './assets/css/_cartAddress.css')
+    .addEntry('_formAddress', './assets/css/_formAddress.css')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     //.addEntry('page1', './assets/js/page1.js')
     //.addEntry('page2', './assets/js/page2.js')
 
@@ -54,7 +130,7 @@ Encore
     })
 
     // enables Sass/SCSS support
-    //.enableSassLoader()
+    // .enableSassLoader()
 
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()

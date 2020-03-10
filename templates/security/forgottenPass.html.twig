@@ -5,15 +5,20 @@
 
 {% block body %}
 
-<div class="container">
-<h1>Mot de passe oublié ?</h1>
-<p>Demandez à réinitialiser votre mot de passe en renseignant votre mail.</p>
+<div class="container" style="position:absolute;top:40%; left:50%; transform: translate(-50%,-50%);">
+    <div class="d-flex flex-column col w-50 mx-auto text-center align-items-center">
+        <h1>Mot de passe oublié ?</h1>
+        <p>Demandez à réinitialiser votre mot de passe en renseignant votre mail.</p>
 
-{{form_start(form)}}
-    {{form_row(form.email)}}
-    <button  type="submit">Envoyer</button>
-{{form_end(form)}}
+        {{form_start(form)}}
+        <div class="row">
+        {{form_row(form.email)}}
+        </div>
+        <button class="btn btn-dark mt-4" type="submit">Envoyer</button>
 
+            
+        {{form_end(form)}}
+    </div>
 </div>
 
 

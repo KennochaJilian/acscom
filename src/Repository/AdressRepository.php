@@ -19,6 +19,15 @@ class AdressRepository extends ServiceEntityRepository
         parent::__construct($registry, Adress::class);
     }
 
+    public function getAdressUser($user)
+    {
+        $query = $this->createQueryBuilder('a')
+                    ->andWhere('a.user = :user')
+                    ->setParameter('user', $user);
+
+        return $query;
+
+    }
     // /**
     //  * @return Adress[] Returns an array of Adress objects
     //  */

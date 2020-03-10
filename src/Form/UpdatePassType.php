@@ -11,7 +11,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
-class UpdateType extends AbstractType
+class UpdatePassType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
