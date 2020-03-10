@@ -1,0 +1,36 @@
+body {
+    background-color: #F8EBB7;
+    color: white;
+    
+}
+
+
+
+
+h1 {
+
+    font-family: 'Baloo', sans-serif;
+    color: white;
+    background-color:  black;
+}
+
+form {
+    
+    font-family: 'Montserrat', sans-serif;
+}
+
+form * label {
+    font-family: 'Baloo', sans-serif;
+    color: black;
+}
+
+.button--registration {
+    
+    border-radius: 20px;
+    background-color: black;
+    color: white;
+    font-family: 'Baloo', sans-serif;
+    letter-spacing: 1px;
+    
+
+}
