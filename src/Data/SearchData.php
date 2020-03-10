@@ -22,7 +22,7 @@ class SearchData
 
     public $max; 
 
-     /**
+    /**
      * @var null|integer
      */
 
