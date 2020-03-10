@@ -17,17 +17,21 @@
                 {% include 'address/_cardAddress.html.twig' with {address:address, orderMode:orderMode} only %}
             {% endfor %}
 
-            <h2> 2. Mode paiement </h2>
-
-            <h2> 3. Vérification et validation de votre commande </h2>
-            {% include 'cart/_cartDisplay.html.twig' with {items:items}  %}
+            <h2> 2. Vérification et validation de votre commande </h2>
+            
         </div>
 
         <div class="col-md-6">
         
             <div class="card">
                 <div class="card-body">
-                    <p> Montant total: {{ total }} € </p>
+              
+                    {% if reducedAmount != null %}
+                     
+                    <p> Montant total: <del>{{ total }} </del> {{ reducedAmount}} € </p>
+                    {% else %}
+                    <p> Montant total : {{ total }}</p>
+                    {% endif %}
                     
                 </div>
             </div>

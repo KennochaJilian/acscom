@@ -2,22 +2,51 @@
 
 namespace App\Controller;
 
-use App\Repository\ProductRepository;
+use App\Entity\DiscountTicket;
+use App\Form\DiscountTicketType;
+use App\Repository\DiscountTicketRepository;
 use App\Service\Cart\CartService;
+use App\Repository\UserRepository;
+use App\Repository\ProductRepository;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class CartController extends AbstractController
 {
     /**
      * @Route("/panier", name="cart_index")
      */
-    public function index(CartService $cartService){
+    public function index(CartService $cartService, UserRepository $userRepository,Security $security, Request $request, DiscountTicketRepository $DiscountRepo, Session $session){
+        
+        if(!isset($reducedAmount)){
+            $reducedAmount = $session->get('discount', null); 
+        }
+        
+        $DiscountTicket = new DiscountTicket(); 
+
+        $form = $this->createForm(DiscountTicketType::class, $DiscountTicket);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $DiscountTicket = $DiscountRepo->findOneby(['codeContent' => $DiscountTicket->getCodeContent()]);
+            
+            $reducedAmount = $cartService->addDiscount($DiscountTicket->getPercentageDiscount()); 
+            
+
+        }
+
+
+        
         
         return $this->render('cart/index.html.twig', [
             'items' => $cartService->getFullCart(),
-            'total' => $cartService->getTotal()
+            'total' => $cartService->getTotal(),
+            'form' => $form->createView(), 
+            'reducedAmount' => $reducedAmount
         ]);
     }
         
@@ -58,9 +87,14 @@ class CartController extends AbstractController
      * @Route("/panier/modifQuantity/{id}", name="cart_modif")
      */
 
-    public function modifQuantity($id, CartService $cartService){
+    public function modifQuantity($id, CartService $cartService, Session $session){
+
         $cartService->modifQuantity($id,intval($_POST['quantity']));
-        
+        $discount = $session->get('discountPromo', null); 
+        if ($discount != null){
+            $cartService->addDiscount($discount); 
+        }
+
         return $this->redirectToRoute("cart_index");
     }
 

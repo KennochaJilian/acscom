@@ -6,6 +6,8 @@ use App\Data\SearchData;
 use App\Entity\Product;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\Query\ResultSetMapping;
+
 
 /**
  * @method Product|null find($id, $lockMode = null, $lockVersion = null)
@@ -111,5 +113,17 @@ class ProductRepository extends ServiceEntityRepository
 
     }
 
+   public function getProductAssociated($idProduct)
+   {
+
+        $conn= $this->getEntityManager()->getConnection();
+        $sql = 'SELECT * from product, product_tag where product.id = product_tag.product_id AND product_tag.tag_id IN (select tag_id FROM product_tag WHERE product_id = :idProduct) AND product.id != :idProduct'; 
+        $stmt = $conn->prepare($sql); 
+        $stmt->execute(['idProduct' => $idProduct]);
+
+        return $stmt->fetchAll();
+
+
+   }
    
 }

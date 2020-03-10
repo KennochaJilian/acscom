@@ -63,6 +63,11 @@ class HomepageController extends AbstractController
             $cartService->modifQuantity($id, $quantity);
             return $this->redirectToRoute("homepage"); 
         }
+        
+        $product = $repo_product->find($id);
+        $productsAssociated = $repo_product->getProductAssociated(16); 
+      
+        
 
 ///////////////////////////////////////Commentaire/////////////////////////////////////////////////////////
         $manager = $this->getDoctrine()->getManager();
@@ -90,7 +95,8 @@ class HomepageController extends AbstractController
         'product' => $product,
         'commentaries' => $commentaries,
         'form' => $form->createView(),
-        'form_comment' => $form_comment->createView()
+        'form_comment' => $form_comment->createView(),
+        'productsAssociated' => $productsAssociated
         ]);
     }
 }

@@ -4,10 +4,12 @@
 {% block body %}
 
     {% if items | length > 0 %}
-    
-        {% include 'cart/_cartDisplay.html.twig' with {items:items}  %}
 
-        <a href="{{ path('order')}}" class="btn btn-success"> Next step !</a>
+       
+        {% include 'cart/_cartDisplay.html.twig' with {items:items}  %}
+      
+
+     
 
     {% else %}
         <p>Votre panier est vide</p>

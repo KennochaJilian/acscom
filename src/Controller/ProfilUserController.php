@@ -114,8 +114,8 @@ class ProfilUserController extends AbstractController
         $manager = $this->getDoctrine()->getManager();
 
         $addressToRemove = $repositery->find($id); 
-        
-        $manager->remove($addressToRemove); 
+        $addressToRemove->setUser(null);
+        $manager->persist($addressToRemove);
         $manager->flush();
 
         return $this->redirectToRoute('profil_user');
