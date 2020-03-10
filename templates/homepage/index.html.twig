@@ -2,6 +2,12 @@
 
 
 {% block title %}Liste des produits{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('indexHomepage') }}
+{% endblock %}
+
 {% block body %}
 
    <main role="main"> 
@@ -28,12 +34,12 @@
             <div class="col-md-8 d-flex flex-wrap no-gutters">
 
 
-              <div class="col-12 border bg-danger">
+              <div class="col-md-12 border">
                 <img class="card-img img-fluid" src="http://placehold.it/600x200" alt="Card image">
               </div>
               
               
-              <div class="col-8 border bg-danger">
+              <div class="col-md-8 border">
 
               </div>
               

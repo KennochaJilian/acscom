@@ -32,6 +32,9 @@
                                 <p style="font-size: 40px;">{{ product.price}} €</p>
                             </div>
                             <div class="col-8">
+<<<<<<< HEAD
+                                {{form(form)}}
+=======
                                 <div class="d-flex flex-column">
                                     <div class="d-flex flex-row justify-content-start align-items-center mb-2">
                                         <button id="add_product_wish">+</button>
@@ -45,6 +48,7 @@
                                     </div>
                                     <a href="{{ path('cart_add', {'id' : product.id}) }}">Ajouter au panier</a>
                                 </div>
+>>>>>>> 1c45eed610c0bdba88e4f180f5bc4fe52ed9680c
                             </div>
                         </div>
 
@@ -132,6 +136,20 @@
             
             </div>
 
+        </div>
+        <div class="row">
+            <div class="col-8">
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    {{form(form_comment)}}
+                {% endif %}
+                <div>
+                    <h6>Commentaires:</h6>
+                    {% for commentary in commentaries %}
+                        <h6>{{commentary.username.username}}</h6>
+                        <p>{{commentary.commentary}}</p>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
 
     </div>
