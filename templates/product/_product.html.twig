@@ -2,7 +2,10 @@
 
 {% block body %}
 
+<<<<<<< HEAD
+=======
   
+>>>>>>> 81bd0eab109489665ebd5b66fdd836dfa8841a10
     <div class="container-fluid product_page my-2">
 
         <div class="d-flex flex-row justify-content-center align-items-center no-gutters">
@@ -44,7 +47,7 @@
                             <div class="col-12">
                                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                                     <div class="carousel-inner">
-                                   
+
                             {% set activeCarrousel = false %}
 
                             {% for product in productsAssociated  %}
@@ -59,13 +62,13 @@
                                         <div class="carousel-caption d-none d-md-block">
                                             <h5>{{product.name}}</h5>
                                             <p>{{product.price}}</p>
-                                            <a  class="btn btn-primary" href="{{path ('pageProduct', {'id' : product.id})}}">View</a>
+                                            <a  class="btn btn-primary" href="{{path ('pageProduct', {'id' : product.id})}}">Voir</a>
                                         </div>
                                 </div>
                             {% endfor %}
                                 </div>
 
-                             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                     <span class="sr-only">Previous</span>
                             </a>

@@ -54,80 +54,45 @@
                 </thead>
             </table>
             <div>
-                        <div id="multi-item-example" class="carousel slide carousel-fade carousel-multi-item" data-ride="carousel">
+                <h4>Produits complémentaires</h4>
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    </ol>
+                
+                <div class="carousel-inner">
+                
+                    {% set activeCarrousel = false %}
 
-            <!--Slides-->
-                        <div class="carousel-inner" role="listbox">
-                        
-            <!--First slide-->
-                        <div class="carousel-item active">
-                        
-                                <div class="row border">
-                        
-                                    <div class="col-md-6">
-                                        <div class="card mb-2">
-                                                <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg"
-                                                alt="Card image cap">
-                                            <div class="card-body">
-                                                <h4 class="card-title">Produit</h4>
-                                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                                                card's content.</p>
-                                                <a class="btn btn-dark">Button</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                        
-                                    <div class="col-md-6 clearfix d-none d-md-block">
-                                        <div class="card mb-2">
-                                                <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(18).jpg"
-                                                alt="Card image cap">
-                                            <div class="card-body">
-                                                <h4 class="card-title">Produit</h4>
-                                                <p class="card-text">Some quick example text to build on the Produit and make up the bulk of the
-                                                card's content.</p>
-                                                <a class="btn btn-primary">Button</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                        </div>
-            <!--/.First slide-->
-
-            <!--Second slide-->
+                    {% for product in productsAssociated  %}
+                            {% if not activeCarrousel %}
+                    <div class="carousel-item active">
+                        {% set activeCarrousel = true %}
+                        {% else %}
                         <div class="carousel-item">
-                            <div class="row">
-                                <div class="col-md-6">
-                                <div class="card mb-2">
-                                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg"
-                                    alt="Card image cap">
-                                    <div class="card-body">
-                                    <h4 class="card-title">Produit</h4>
-                                    <p class="card-text">Some quick example text to build on the Produit and make up the bulk of the
-                                        card's content.</p>
-                                    <a class="btn btn-primary">Button</a>
-                                    </div>
-                                </div>
-                                </div>
-
-                                <div class="col-md-6 clearfix d-none d-md-block">
-                                    <div class="card mb-2">
-                                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(47).jpg"
-                                        alt="Card image cap">
-                                    <div class="card-body">
-                                        <h4 class="card-title">Produit</h4>
-                                        <p class="card-text">Some quick example text to build on the Produit and make up the bulk of the
-                                        card's content.</p>
-                                        <a class="btn btn-primary">Button</a>
-                                    </div>
-                                    </div>
-                                </div>
+                            {% endif %}
+                            <img class="d-block w-100" src="https://i.picsum.photos/id/1033/800/400.jpg" alt="image slide">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>{{product.name}} <span class="badge badge-light">{{product.price}} €</span></h5>
+                                <p>{{product.description}}</p>
+                                <a  class="btn btn-outline-light btn-sm" href="{{path ('pageProduct', {'id' : product.id})}}">Voir</a>
                             </div>
-                        
                         </div>
+                    {% endfor %}
                     </div>
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
                 </div>
             </div>
         </div>
+
         <div class="d-flex flex-row  justify-content-start">
             <div class="col">
                 <div class="d-flex flex-row  justify-content-around align-items-center p-4 border">
@@ -143,11 +108,6 @@
                     {{form_row(form.codeContent)}}
                     <button type="submit" class="btn btn-primary"> Valider </button>
                     {{form_end(form)}}
-                </div>
-                <div class="d-flex flex-row justify-content-between p-4 border">
-                    <p>TAXE :</p>
-                    
-                    <p>{{ total }}€</p>
                 </div>
                 <div class="d-flex flex-column justify-content-between border p-4">
                     <p>Mode de livraison:</p>
@@ -166,9 +126,9 @@
                 </div>
                 {% if reducedAmount != null %}
 
-                 <div class="d-flex flex-row justify-content-between  p-4 border">
+                <div class="d-flex flex-row justify-content-between  p-4 border">
                     <p>  Total : </p>
-                    <p> <del> {{ total }} </del> </p>
+                    <p> <del> {{ total }} € </del></p>
                     <p> {{reducedAmount}} € </p>
 
                 </div>
@@ -177,14 +137,14 @@
                     
                 <div class="d-flex flex-row justify-content-between  p-4 border">
                     <p>Total :</p>
-                    <p>{{ total }}€</p>
+                    <p>{{ total }} €</p>
                 </div>
                 {% endif %}
                 <div class="d-flex flex-row border">
-                   <a class="w-100" href="{{path('order')}}"><button class="btn-danger w-100" style="height:80px;">NEXT STEP</button></a> 
-                </div>
-                <div class="d-flex flex-row border">
-                   <a class="w-100" href="{{path('homepage')}}"><button class="btn-dark w-100" style="height:80px;">BACK TO STORE</button></a> 
+                    <a class="w-100" href="{{path('order')}}"><button class="btn-danger w-100" style="height:80px;">NEXT STEP</button></a> 
+                    </div>
+                    <div class="d-flex flex-row border">
+                    <a class="w-100" href="{{path('homepage')}}"><button class="btn-dark w-100" style="height:80px;">BACK TO STORE</button></a> 
                 </div>
             </div>
         </div>

@@ -6,10 +6,8 @@ use App\Entity\DiscountTicket;
 use App\Form\DiscountTicketType;
 use App\Repository\DiscountTicketRepository;
 use App\Service\Cart\CartService;
-use App\Repository\UserRepository;
 use App\Repository\ProductRepository;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -19,7 +17,7 @@ class CartController extends AbstractController
     /**
      * @Route("/panier", name="cart_index")
      */
-    public function index(CartService $cartService, UserRepository $userRepository,Security $security, Request $request, DiscountTicketRepository $DiscountRepo, Session $session){
+    public function index(CartService $cartService, Request $request, DiscountTicketRepository $DiscountRepo, Session $session, ProductRepository $repo_product){
         $user = $this->getUser(); 
         if(!isset($reducedAmount)){
             $reducedAmount = $session->get('discount', null); 
@@ -73,14 +71,17 @@ class CartController extends AbstractController
        
         
         
+        $productsAssociated = $repo_product->getProductAssociated(16);
+
         return $this->render('cart/index.html.twig', [
             'items' => $cartService->getFullCart(),
             'total' => $cartService->getTotal(),
             'form' => $form->createView(), 
             'reducedAmount' => $reducedAmount,
+            'productsAssociated' => $productsAssociated
         ]);
     }
-        
+
     /**
      * @Route("/panier/add/{id}", name="cart_add")
      */
