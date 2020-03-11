@@ -24,6 +24,8 @@
     {% for address in addressUser %}
         {% include 'address/_cardAddress.html.twig' with {address:address, orderMode:orderMode} only %}
     {% endfor %}
+
+    <h2> Points de fidelité : {{fidelityPoint}}</h2>
     <h2>Historique de commande </h2>
     {% if not orders is empty %}
     {% for order in orders %}

@@ -65,7 +65,7 @@ class HomepageController extends AbstractController
         }
         
         $product = $repo_product->find($id);
-        $productsAssociated = $repo_product->getProductAssociated(16); 
+        $productsAssociated = $repo_product->getProductAssociated($id); 
       
         
 

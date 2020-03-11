@@ -28,9 +28,10 @@ class ProfilUserController extends AbstractController
     public function index(Request $request, UserPasswordEncoderInterface $encoder, ProfilService $profilService )
     {
         $user = $this->getUser(); 
+        
         $addressUser = $profilService->getAddress($user);
         $ordersUser = $profilService->getOrders($user);
-    
+        $fidelityPoint = $user->getFidelityPoint();
         // Permet de à l'utilisateur de modifier son mot de passe depuis la vue du profil
         $manager = $this->getDoctrine()->getManager();
         $changePassword = new ChangePassword(); 
@@ -64,7 +65,8 @@ class ProfilUserController extends AbstractController
             'addressUser' => $addressUser,
             'orderMode' => false, 
             'form' => $form->createView(), 
-            'orders' => $ordersUser 
+            'orders' => $ordersUser,
+            'fidelityPoint' =>$fidelityPoint 
         ]);
     }
 
