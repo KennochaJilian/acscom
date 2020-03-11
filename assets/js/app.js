@@ -51,7 +51,6 @@ window.addEventListener("DOMContentLoaded", function(){
     let containerToast = document.querySelector('#js_containerToast');
     let toast = document.getElementById("toastModel"); 
     let newToast = toast.cloneNode(containerToast); 
-    console.log(newToast);
     newToast.querySelector('.toast-body').innerText = `Le produit ${message} a bien été ajouté au panier`;
     containerToast.appendChild(newToast)
     newToast.classList.add("show");
