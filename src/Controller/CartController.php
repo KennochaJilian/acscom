@@ -18,7 +18,7 @@ class CartController extends AbstractController
      * @Route("/panier", name="cart_index")
      */
     public function index(CartService $cartService, Request $request, DiscountTicketRepository $DiscountRepo, Session $session, ProductRepository $repo_product){
-        
+        $user = $this->getUser(); 
         if(!isset($reducedAmount)){
             $reducedAmount = $session->get('discount', null); 
         }
@@ -30,10 +30,46 @@ class CartController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
-            $DiscountTicket = $DiscountRepo->findOneby(['codeContent' => $DiscountTicket->getCodeContent()]);
+           
+            $DiscountTicketBDD = $DiscountRepo->findOneby(['codeContent' => $DiscountTicket->getCodeContent()]);
+            $DiscountTicketContent = intval($DiscountTicket->getCodeContent()); 
             
-            $reducedAmount = $cartService->addDiscount($DiscountTicket->getPercentageDiscount()); 
+            
+            if($DiscountTicketBDD != null ){
+                $reducedAmount = $cartService->addDiscount($DiscountTicketBDD->getPercentageDiscount()); 
+                $this->addFlash(
+                    'notice', 
+                    'Le code de reduction a bien été appliqué'
+                ); 
+            } elseif($DiscountTicketContent > 0 && $user-> getFidelityPoint() >= $DiscountTicketContent && $user-> getFidelityPoint() >= 10 ){
+                if ($DiscountTicketContent <= 200 ){
+                    $percentageDiscount = round($DiscountTicket->getCodeContent()/10,0, PHP_ROUND_HALF_DOWN);
+                    $reducedAmount = $cartService->addDiscount($percentageDiscount/100);  
+                    $session->set('fidelityPoint', $DiscountTicketContent);
+                    $this->addFlash(
+                        'notice', 
+                        'Les points de fidelités ont bien été utilisés, vous avez obtenu '. $percentageDiscount . ' %'
+                    ); 
+                } else{
+                    $this->addFlash(
+                        'notice', 
+                        'Vous ne pouvez pas utiliser plus de 200 points de fidelité par achat '
+                    ); 
+
+                }
+               
+            } else {
+
+                $this->addFlash(
+                    'notice', 
+                    'Le code de reduction n\'est pas reconnu, ou vous n\'avez pas assez de point de fidelité'
+                ); 
+                
+            }
         }
+
+       
+        
         
         $productsAssociated = $repo_product->getProductAssociated(16);
 

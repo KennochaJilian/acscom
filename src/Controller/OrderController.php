@@ -24,8 +24,8 @@ class OrderController extends AbstractController
     public function index(AdressRepository $repoAddresse, Request $request, UserRepository $repositery, CartService $cartService, MailService $mailService, Session $session)
     {   
         
-            $reducedAmount = $session->get('discount', null); 
-       
+        $reducedAmount = $session->get('discount', null); 
+        $fidelityPointUsed = $session->get('fidelityPoint', 0);
 
         $user = $repositery->findBy([
             'id' => $this->getUser()->getId()
@@ -61,6 +61,12 @@ class OrderController extends AbstractController
             } else{
                 $cartTotal = $cartService->getTotal();
             }
+            //Gestion des points de fidélités
+            
+            $fidelityPoint = $user->getFidelityPoint() + (round($cartTotal/10,0, PHP_ROUND_HALF_DOWN)) - $fidelityPointUsed; 
+            $user->setFidelityPoint($fidelityPoint);
+            $manager->persist($user); 
+
            $cartValid = $cartService->getFullCart(); 
            
             $order->setOrderPriceTotal($cartTotal);
