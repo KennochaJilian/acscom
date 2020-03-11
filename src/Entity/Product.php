@@ -55,9 +55,10 @@ class Product
     private $category;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="product", orphanRemoval=true)
+     * @ORM\Column(type="string", length=255)
      */
     private $images;
+
 
     public function __construct()
     {
@@ -168,34 +169,17 @@ class Product
         return $this;
     }
 
-    /**
-     * @return Collection|Image[]
-     */
-    public function getImages(): Collection
+    public function getImages(): ?string
     {
         return $this->images;
     }
 
-    public function addImage(Image $image): self
+    public function setImages(string $images): self
     {
-        if (!$this->images->contains($image)) {
-            $this->images[] = $image;
-            $image->setProduct($this);
-        }
+        $this->images = $images;
 
         return $this;
     }
 
-    public function removeImage(Image $image): self
-    {
-        if ($this->images->contains($image)) {
-            $this->images->removeElement($image);
-            // set the owning side to null (unless already changed)
-            if ($image->getProduct() === $this) {
-                $image->setProduct(null);
-            }
-        }
 
-        return $this;
-    }
 }

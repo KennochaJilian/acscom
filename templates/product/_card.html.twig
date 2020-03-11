@@ -2,7 +2,7 @@
 <div class="col-md-4">
 
     <div class="card">
-        <img class="card-img img-fluid" src="http://placehold.it/600x550" alt="Card image">
+        <img class="card-img img-fluid" src="{{ asset('build/images/' ~ product.images)}}" alt="Card image">
         <div class="d-flex flex-column card-img-overlay justify-content-end text-center">
                 <h4> {{product.name}} </h4> 
                 <p class="card-text"> {{ product.cardDescription}}</p>

@@ -19,15 +19,6 @@ class OrderRepository extends ServiceEntityRepository
         parent::__construct($registry, Order::class);
     }
 
-    public function getProducts($order)
-    {
-        return $this->createQueryBuilder('o')
-                    ->andWhere('o.orders = :order')
-                    ->setParameter('order', $order)
-                    ->leftJoin();
-
-
-    }
     
     // /**
     //  * @return Order[] Returns an array of Order objects

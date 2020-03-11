@@ -24,6 +24,8 @@
     {% for address in addressUser %}
         {% include 'address/_cardAddress.html.twig' with {address:address, orderMode:orderMode} only %}
     {% endfor %}
+
+    <h2> Points de fidelité : {{fidelityPoint}}</h2>
     <h2>Historique de commande </h2>
     {% if not orders is empty %}
     {% for order in orders %}
@@ -40,9 +42,8 @@
     {% else %}
         <p> Vous n'avez pas encore commandé sur notre site :( </p>
     {% endif %}
-
-    <h2> Moyens de paiement </h2>
     </div>
+
 
     <div class="col-md-6">
         <h2> Modifier votre mot de passe </h2>

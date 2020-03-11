@@ -89,6 +89,11 @@ class User implements UserInterface
     */
     private $token;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $fidelityPoint;
+
 
     public function __construct()
     {
@@ -285,6 +290,18 @@ class User implements UserInterface
 
     public function getRoles(){
         return ['ROLE_USER']; 
+    }
+
+    public function getFidelityPoint(): ?int
+    {
+        return $this->fidelityPoint;
+    }
+
+    public function setFidelityPoint(?int $fidelityPoint): self
+    {
+        $this->fidelityPoint = $fidelityPoint;
+
+        return $this;
     }
 
 

@@ -14,15 +14,19 @@ use App\Repository\UserRepository;
 use App\Service\Cart\CartService;
 use App\Service\mail\MailService;
 use Symfony\Component\HttpFoundation\Request;
-
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class OrderController extends AbstractController
 {
     /**
      * @Route("/order", name="order")
      */
-    public function index(AdressRepository $repoAddresse, Request $request, UserRepository $repositery, CartService $cartService, MailService $mailService)
-    {
+    public function index(AdressRepository $repoAddresse, Request $request, UserRepository $repositery, CartService $cartService, MailService $mailService, Session $session)
+    {   
+        
+        $reducedAmount = $session->get('discount', null); 
+        $fidelityPointUsed = $session->get('fidelityPoint', 0);
+
         $user = $repositery->findBy([
             'id' => $this->getUser()->getId()
         ])[0];
@@ -52,8 +56,19 @@ class OrderController extends AbstractController
         $formOrder = $this->createForm(OrdersType::class, $order); 
         $formOrder->handleRequest($request); 
         if($formOrder->isSubmitted() && $formOrder->isValid()){
+            if($reducedAmount != null){
+                $cartTotal = $reducedAmount;
+            } else{
+                $cartTotal = $cartService->getTotal();
+            }
+            //Gestion des points de fidélités
+            
+            $fidelityPoint = $user->getFidelityPoint() + (round($cartTotal/10,0, PHP_ROUND_HALF_DOWN)) - $fidelityPointUsed; 
+            $user->setFidelityPoint($fidelityPoint);
+            $manager->persist($user); 
+
            $cartValid = $cartService->getFullCart(); 
-           $cartTotal = $cartService->getTotal();
+           
             $order->setOrderPriceTotal($cartTotal);
             $order->setUser($this->getUser()); 
             foreach($cartValid as $product)
@@ -79,7 +94,8 @@ class OrderController extends AbstractController
             'editMode' => $address->getId()!==null,
             'orderMode' => true,
             'items' => $cartService->getFullCart(),
-            'total' => $cartService->getTotal()  
+            'total' => $cartService->getTotal(),             
+            'reducedAmount' => $reducedAmount  
         ]);
     }
 }
