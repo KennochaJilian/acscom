@@ -2,14 +2,10 @@
 
 namespace App\Controller;
 
-use App\Data\Search;
 use App\Entity\Comment;
-use App\Entity\Product;
 use App\Data\SearchData;
 use App\Form\SearchForm;
-use App\Form\SearchType;
 use App\Form\CommentType;
-use App\Entity\OrdersProducts;
 use App\Service\Cart\CartService;
 use App\Repository\CommentRepository;
 use App\Repository\ProductRepository;
@@ -19,15 +15,13 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class HomepageController extends AbstractController
 {
     /**
      * @Route("/", name="homepage")
      */
-
-    public function index(ProductRepository $repositery, Request $request, AuthenticationUtils $authenticationUtils)
+    public function index(ProductRepository $repositery, Request $request)
     {
         $data =new SearchData(); 
         $form = $this->createForm(SearchForm::class, $data);
@@ -65,11 +59,10 @@ class HomepageController extends AbstractController
         }
         
         $product = $repo_product->find($id);
-        $productsAssociated = $repo_product->getProductAssociated(16); 
-      
-        
+        $productsAssociated = $repo_product->getProductAssociated($id);
 
 ///////////////////////////////////////Commentaire/////////////////////////////////////////////////////////
+
         $manager = $this->getDoctrine()->getManager();
 
         $comment = new Comment();

@@ -64,8 +64,6 @@ class ProductRepository extends ServiceEntityRepository
             ->select('c','p')
             ->join('p.category', 'c');
 
-      
-            
         
         if(!empty($search->q)){
             
@@ -73,11 +71,6 @@ class ProductRepository extends ServiceEntityRepository
                 ->leftJoin('p.tag', 't')
                 ->andWhere('p.name LIKE :q or t.name LIKE :q')                
                 ->setParameter('q', "%{$search->q}%");
-
-            
-
-           
-           
 
         }
 
@@ -102,19 +95,16 @@ class ProductRepository extends ServiceEntityRepository
             
             $query = $query
                 ->andWhere('c.id IN (:categories)')
-                ->setParameter('categories', $search->categories);   
-
+                ->setParameter('categories', $search->categories);
+                
         }
 
-
-      
-        
         return $query->getQuery()->getResult();
 
     }
 
-   public function getProductAssociated($idProduct)
-   {
+    public function getProductAssociated($idProduct)
+    {
 
         $conn= $this->getEntityManager()->getConnection();
         $sql = 'SELECT * from product, product_tag where product.id = product_tag.product_id AND product_tag.tag_id IN (select tag_id FROM product_tag WHERE product_id = :idProduct) AND product.id != :idProduct'; 
@@ -122,8 +112,6 @@ class ProductRepository extends ServiceEntityRepository
         $stmt->execute(['idProduct' => $idProduct]);
 
         return $stmt->fetchAll();
+    }
 
-
-   }
-   
 }
