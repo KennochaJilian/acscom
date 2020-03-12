@@ -68,7 +68,17 @@ class CartController extends AbstractController
             }
         }
 
-        $productsAssociated = $repo_product->getProductAssociated(16);
+       
+        $productFromCart = $cartService->getFullCart();
+        $productsAssociated = [];
+
+        foreach($productFromCart as $product){
+
+           foreach($repo_product->getProductAssociated( $product['product']->getId()) as $productTest ){
+            $productsAssociated[] = $productTest;
+           }
+            
+        }
 
         return $this->render('cart/index.html.twig', [
             'items' => $cartService->getFullCart(),
@@ -123,7 +133,7 @@ class CartController extends AbstractController
         if ($discount != null){
             $cartService->addDiscount($discount); 
         }
-
+        
         return $this->redirectToRoute("cart_index");
     }
 
