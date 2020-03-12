@@ -17,13 +17,22 @@
                                 <td >{{ item.product.price }} €</td>
                                 <td class="d-flex">
                                     <form method="POST" action="{{ path('cart_modif', {'id' : item.product.id}) }}"> 
-                                        <select name="quantity" class="" id="inlineFormCustomSelect">
+                                       <select name="quantity" class="" id="inlineFormCustomSelect">
                                             <option selected> {{ item.quantity }}</option>
-                                            {% for i in 1..item.product.quantity %}
+                                            {% set numberItems = item.product.quantity %}
+
+                                            {% if numberItems <= 10 %}
+                                             {% for i in 1..item.product.quantity %}
                                             <option value="{{i}}">{{i}}</option>
                                             {% endfor %}
+                                            {% else %}
+                                                 {% for i in 1..10 %}
+                                            <option value="{{i}}">{{i}}</option>
+                                            {% endfor %}
+                                            {% endif %}
+                                           
                                             
-                                        </select>
+                                        </select
                                         <button type="submit" class="btn btn-dark btn-sm">Modifier</button>
                                     </form> 
                                 </td>
