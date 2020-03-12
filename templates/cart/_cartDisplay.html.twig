@@ -72,10 +72,10 @@
                         {% else %}
                         <div class="carousel-item">
                             {% endif %}
-                            <img class="d-block w-100" src="https://i.picsum.photos/id/1033/800/400.jpg" alt="image slide">
+                            <img class="d-block w-100" src="{{ asset('build/images/' ~ product.images)}}" alt="image slide">
                             <div class="carousel-caption d-none d-md-block">
-                                <h5>{{product.name}} <span class="badge badge-light">{{product.price}} €</span></h5>
-                                <p>{{product.description}}</p>
+                                <h5 class="text-body">{{product.name}} <span class="badge badge-light">{{product.price}} €</span></h5>
+                                <p class="text-body">{{product.description}}</p>
                                 <a  class="btn btn-outline-light btn-sm" href="{{path ('pageProduct', {'id' : product.id})}}">Voir</a>
                             </div>
                         </div>
