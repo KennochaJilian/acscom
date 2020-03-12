@@ -17,6 +17,7 @@ use Doctrine\ORM\Query\ResultSetMapping;
  */
 class ProductRepository extends ServiceEntityRepository
 {
+    public $color = 'red'; 
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Product::class);

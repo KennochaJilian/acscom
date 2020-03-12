@@ -66,6 +66,7 @@ class PageProductController extends AbstractController
             "product" =>$product
         ]);
         $user = $security->getUser();
+        $productsAssociated = $repo_product->getProductAssociated($id);
 //////////////////////////////////////////////Fin Commentaire////////////////////////////////////////////////
         
         return $this->render('product/_product.html.twig', [
@@ -73,7 +74,8 @@ class PageProductController extends AbstractController
             'commentaries' => $commentaries,
             "user" => $user,
             'form' => $form->createView(),
-            'form_comment' => $form_comment->createView()
+            'form_comment' => $form_comment->createView(),
+            'productsAssociated' => $productsAssociated
         ]);
     }
 

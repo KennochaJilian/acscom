@@ -14,21 +14,21 @@ import "bootstrap";
 
 
 
-console.log('Hellooooooooooioouiug');
+// console.log('Hellooooooooooioouiug');
 
-let note = document.getElementById('comment_note');
-let add_note = document.getElementById('add_note');
-let substract_note = document.getElementById('substract_note');
+// let note = document.getElementById('comment_note');
+// let add_note = document.getElementById('add_note');
+// let substract_note = document.getElementById('substract_note');
 
 
-add_note.addEventListener("click", function (event){
-  event.preventDefault();
-  note.value ++;
-});
-substract_note.addEventListener("click", function (event){
-  event.preventDefault();
-  note.value --;
-});
+// add_note.addEventListener("click", function (event){
+//   event.preventDefault();
+//   note.value ++;
+// });
+// substract_note.addEventListener("click", function (event){
+//   event.preventDefault();
+//   note.value --;
+// });
 
   
 
