@@ -30,7 +30,7 @@ class CartController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
-           
+        
             $DiscountTicketBDD = $DiscountRepo->findOneby(['codeContent' => $DiscountTicket->getCodeContent()]);
             $DiscountTicketContent = intval($DiscountTicket->getCodeContent()); 
             
@@ -57,7 +57,7 @@ class CartController extends AbstractController
                     ); 
 
                 }
-               
+            
             } else {
 
                 $this->addFlash(
