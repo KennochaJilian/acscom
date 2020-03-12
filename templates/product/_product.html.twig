@@ -119,21 +119,54 @@
             </div>
 
         </div>
-        <div class="row">
-            <div class="col-8">
+        <div class="row mt-5">
+            <div class="col-2"></div>
+            <div class="col-8 ">
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                    {{form(form_comment)}}
+                    {{form_start(form_comment)}}
+                    <div class="row">
+                        <!-- <div align="center">
+                            <i class="fa fa-star fa-2x" data-index="0"></i>
+                            <i class="fa fa-star fa-2x" data-index="1"></i>
+                            <i class="fa fa-star fa-2x" data-index="2"></i>
+                            <i class="fa fa-star fa-2x" data-index="3"></i>
+                            <i class="fa fa-star fa-2x" data-index="4"></i>
+                            <br><br>
+                        </div> -->
+                        <div class="col-1">
+                            <button id="add_note">+</button>
+                            
+                        </div>
+                        <div class="col-1">
+                            {{form_row(form_comment.note)}}
+                        </div>
+                        <div class="col-1">
+                            <button id="substract_note">-</button>
+                        </div>
+                    </div>
+                    {{form_row(form_comment.commentary)}}
+                    {{form_end(form_comment)}}
                 {% endif %}
                 <div>
                     <h6>Commentaires:</h6>
                     {% for commentary in commentaries %}
-                        <h6>{{commentary.username.username}}</h6>
-                        <p>{{commentary.commentary}}</p>
+                    <div class="row">
+                        <div class="col-6">
+                            <h6>{{commentary.username.username}}</h6>
+                            <p>{{commentary.note}}/5</p>
+                            <p>{{commentary.commentary}}</p>
+                        </div>
+                        {% if is_granted('IS_AUTHENTICATED_FULLY') and commentary.username.id == user.id %}
+                        <div class="col-2">
+                            <a href="{{path('edit_comment', {'id' : product.id, 'idcomment' : commentary.id} )}}">edit</a>
+                            <a class="js_deleteComment" data-idcomment = "{{commentary.id}}" data-id="{{product.id}}"  href="{{ path('delete_comment', {'id' : product.id, 'idcomment' : commentary.id} )}}">delete</a>
+                        </div>
+                        {% endif %}
+                    </div>
                     {% endfor %}
                 </div>
             </div>
         </div>
-
     </div>
 
     
