@@ -68,15 +68,15 @@ class CartController extends AbstractController
             }
         }
 
-       
+        
         $productFromCart = $cartService->getFullCart();
         $productsAssociated = [];
 
         foreach($productFromCart as $product){
 
-           foreach($repo_product->getProductAssociated( $product['product']->getId()) as $productTest ){
+            foreach($repo_product->getProductAssociated( $product['product']->getId()) as $productTest ){
             $productsAssociated[] = $productTest;
-           }
+            }
             
         }
 

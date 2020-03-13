@@ -56,27 +56,23 @@
             <div>
                 <h4>Produits complémentaires</h4>
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                    <ol class="carousel-indicators">
-                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                    </ol>
                 
                 <div class="carousel-inner">
                 
                     {% set activeCarrousel = false %}
 
                     {% for product in productsAssociated  %}
-                            {% if not activeCarrousel %}
+                        {% if not activeCarrousel %}
                     <div class="carousel-item active">
                         {% set activeCarrousel = true %}
                         {% else %}
                         <div class="carousel-item">
-                            {% endif %}
+                        {% endif %}
                             <img class="d-block w-100" src="{{ asset('build/images/' ~ product.images)}}" alt="image slide">
                             <div class="carousel-caption d-none d-md-block">
-                                <h5 class="text-body">{{product.name}} <span class="badge badge-light">{{product.price}} €</span></h5>
+                                <h5 class="text-body">{{product.name}} <span class="badge badge-dark">{{product.price}} €</span></h5>
                                 <p class="text-body">{{product.description}}</p>
-                                <a  class="btn btn-outline-light btn-sm" href="{{path ('pageProduct', {'id' : product.id})}}">Voir</a>
+                                <a  class="btn btn-outline-dark btn-sm" href="{{path ('pageProduct', {'id' : product.id})}}">Voir</a>
                             </div>
                         </div>
                     {% endfor %}
