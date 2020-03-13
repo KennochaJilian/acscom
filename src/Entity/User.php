@@ -94,6 +94,11 @@ class User implements UserInterface
      */
     private $fidelityPoint;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $roles = "ROLE_USER";
+
 
     public function __construct()
     {
@@ -289,7 +294,7 @@ class User implements UserInterface
     public function getSalt(){}
 
     public function getRoles(){
-        return ['ROLE_USER']; 
+        return [$this->roles]; 
     }
 
     public function getFidelityPoint(): ?int
@@ -300,6 +305,13 @@ class User implements UserInterface
     public function setFidelityPoint(?int $fidelityPoint): self
     {
         $this->fidelityPoint = $fidelityPoint;
+
+        return $this;
+    }
+
+    public function setRoles(?string $roles): self
+    {
+        $this->roles = $roles;
 
         return $this;
     }

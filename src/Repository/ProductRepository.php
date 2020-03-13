@@ -16,8 +16,7 @@ use Doctrine\ORM\Query\ResultSetMapping;
  * @method Product[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class ProductRepository extends ServiceEntityRepository
-{
-    public $color = 'red'; 
+{ 
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Product::class);
