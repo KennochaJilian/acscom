@@ -64,7 +64,7 @@
             </table>
             <div>
                 <h4>Produits complémentaires</h4>
-                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style=" width:60%;">
                 
                 <div class="carousel-inner">
                 
@@ -77,22 +77,19 @@
                         {% else %}
                         <div class="carousel-item">
                         {% endif %}
-                            <img class="d-block w-100" src="{{ asset('build/images/' ~ product.images)}}" alt="image slide">
+                            <img class="d-block img-fluid" src="{{ asset('build/images/' ~ product.images)}}" alt="responsive image">
                             <div class="carousel-caption d-none d-md-block">
                                 <h5 class="text-body">{{product.name}} <span class="badge badge-dark">{{product.price}} €</span></h5>
-                                <p class="text-body">{{product.description}}</p>
                                 <a  class="btn btn-outline-dark btn-sm" href="{{path ('pageProduct', {'id' : product.id})}}">Voir</a>
                             </div>
                         </div>
                     {% endfor %}
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
+                        <span class="carousel-control-prev-icon" style="filter: invert(1);" aria-hidden="true"></span>
                     </a>
                     <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
+                        <span class="carousel-control-next-icon" style="filter: invert(1);" aria-hidden="true"></span>
                     </a>
                 </div>
             </div>
