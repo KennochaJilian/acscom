@@ -11,12 +11,12 @@
                     </em>
                 <div class="d-flex flex-row justify-content-between align-items-center">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{{ path('pageProduct', {'id' : product.id})}}">View</a></button>
+                    <a class="btn btn-sm btn-outline-secondary" href="{{ path('pageProduct', {'id' : product.id})}}">View</a>
                 </div>
                 <strong class="text-muted" style="font-size: 30px;">{{product.price | number_format(0,',', ' ')}} €</strong>
 
                 <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-dark btn-outline-secondary"><a class="js_addCartLink" href="{{path ('cart_add', {'id' : product.id})}}">Ajouter au panier</a></button>
+                    <a class="js_addCartLink btn btn-sm btn-dark btn-outline-secondary" href="{{path ('cart_add', {'id' : product.id})}}">Ajouter au panier</a>
                 </div>
 
                 </div>

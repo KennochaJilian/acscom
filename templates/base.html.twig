@@ -18,7 +18,6 @@
 
     </head>
     <body>
- 
 
         <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="position: fixed; bottom: 0; right: 0; left: 0; z-index: 99;  border-top: 1px solid black">
@@ -68,8 +67,9 @@
         <a class="nav-link"  href="{{ path('security_logout') }}"> Deconnexion <span class="sr-only">(current)</span></a>
       </li>
       {% endif %}
-      <li class="nav-item p-1 ">
+      <li class="nav-item p-1 d-flex">
         <a class="nav-link"  href="{{ path('cart_index') }}">Panier</a>
+        <p id="js_pillCart"class="badge badge-danger">{{app.session.get('panier')|length}}</p>
       </li>          
     </ul>
 
@@ -117,11 +117,9 @@
         {% block body %}{% endblock %}
 
   <!-- Position it -->
-<div  id="toastModel" class="toast " role="alert" aria-live="assertive" aria-atomic="true">
+<div id="toastModel" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="5000">
   <div class="toast-header">
-    <img src="..." class="rounded mr-2" alt="...">
-    <strong class="mr-auto">Bootstrap</strong>
-    <small>11 mins ago</small>
+    <strong class="mr-auto">Produit ajouté au panier</strong>
     <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -129,11 +127,13 @@
   <div class="toast-body">
     Hello, world! This is a toast message.
   </div>
+  <div class="text-right"> <a class="btn btn-sm btn-outline-secondary" href="{{ path('cart_index')}}">Voir le panier </a> </div>
 </div>
 
-  <div id="js_containerToast" style="position: absolute; top: 0; right: 0;">
+  <div id="js_containerToast">
   </div>
-    <!-- Then put toasts within -->
+
+ 
     
   
 

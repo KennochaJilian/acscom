@@ -27,7 +27,7 @@
          
 
             <h2> 2. Vérification et validation de votre commande </h2>
-            {% include 'cart/_cartDisplayOrder.html.twig' with {items:items, total:total} %}
+            {% include 'cart/_cartDisplayOrder.html.twig' with {items:items, total:total, daysDelivery: daysDelivery} %}
             
         </div>
 

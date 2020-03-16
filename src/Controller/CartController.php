@@ -96,8 +96,9 @@ class CartController extends AbstractController
 
         $cartService->add($id);
         $product = $repo->find($id); 
+        
 
-        return $this->json(['code' => 200, 'message' => $product->getName()], 200);
+        return $this->json(['code' => 200, 'message' => $product->getName(),'quantity' => count($cartService->getFullCart())], 200);
         //return $this->redirectToRoute("cart_index");
     }
 /////////////////////////////////////////////////////////////////////////////////

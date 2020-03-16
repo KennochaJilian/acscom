@@ -10,6 +10,7 @@ use App\Entity\OrdersProducts;
 use App\Form\AddressType;
 use App\Form\OrdersType; 
 use App\Repository\AdressRepository;
+use App\Repository\DeliveryOptionsRepository;
 use App\Repository\UserRepository;
 use App\Service\Cart\CartService;
 use App\Service\mail\MailService;
@@ -21,12 +22,20 @@ class OrderController extends AbstractController
     /**
      * @Route("/order", name="order")
      */
-    public function index(AdressRepository $repoAddresse, Request $request, UserRepository $repositery, CartService $cartService, MailService $mailService, Session $session)
+    public function index(AdressRepository $repoAddresse, Request $request, UserRepository $repositery, CartService $cartService, MailService $mailService, Session $session, DeliveryOptionsRepository $deliveryOptionsRepo )
     {   
         
         $reducedAmount = $session->get('discount', null); 
         $fidelityPointUsed = $session->get('fidelityPoint', 0);
 
+        // Calcul des jours de livraisons
+        $deliveryOptions = []; 
+        foreach( $deliveryOptionsRepo->findAll() as $option){
+            $deliveryOptions[] = "+". strval($option->getNumberDay()) . "days"; 
+
+        }; 
+
+       
         $user = $repositery->findBy([
             'id' => $this->getUser()->getId()
         ])[0];
@@ -95,7 +104,8 @@ class OrderController extends AbstractController
             'orderMode' => true,
             'items' => $cartService->getFullCart(),
             'total' => $cartService->getTotal(),             
-            'reducedAmount' => $reducedAmount  
+            'reducedAmount' => $reducedAmount,
+            'daysDelivery' => $deliveryOptions 
         ]);
     }
 }

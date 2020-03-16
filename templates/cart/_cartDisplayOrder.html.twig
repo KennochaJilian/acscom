@@ -49,6 +49,12 @@
                             <td></td>
                             <td class="text-right">{{ total }} €</td>
                         </tr>
+                         <tr>
+                            <td colspan="3" class="text-right">Livré le : </td>
+                            <td></td>
+                            <td id= "js_poste"class="text-right">  {{ "now"|date_modify(daysDelivery[0])|date("d/m/Y") }}  </td>
+                            <td id="js_pigeon" class="text-right d-none">  {{ "now"|date_modify(daysDelivery[1])|date("d/m/Y") }}  </td>
+                        </tr>
                     </tfoot>
                 </thead>
             </table>
