@@ -45,9 +45,9 @@
     <li class="d-flex">
       <form method="POST" action="{{ path('homepage') }}" class="form-inline">
         <input name="search" class="form-control mr-sm-2" type="search" placeholder="Rechercher" aria-label="Search">
-         <button class="button_search_home btn btn-dark mx-2" style="font-family: 'Baloo'; letter-spacing: 2px;" type="submit">Rechercher</button>
+        <button class="button_search_home btn btn-dark mx-2" style="font-family: 'Baloo'; letter-spacing: 2px;" type="submit">Rechercher</button>
       </form>
-     
+    
     </li>
     {# </div> #}
       
@@ -69,9 +69,16 @@
       {% endif %}
       <li class="nav-item p-1 d-flex">
         <a class="nav-link"  href="{{ path('cart_index') }}">Panier</a>
+<<<<<<< HEAD
         <p id="js_pillCart"class="badge badge-danger">{{app.session.get('panier')|length}}</p>
       </li>          
+=======
+      </li>
+>>>>>>> c1f23277cd5bdecb617c9583934e1984035293e8
     </ul>
+    <span class="font-weight-light">
+      <a class="text-decoration-none text-black-50"  href="{{ path('legal_disclaimers') }}">Mentions légales</a>
+    </span> 
 
   </div>
 </nav>
