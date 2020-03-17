@@ -28,7 +28,7 @@ class OrdersType extends AbstractType
             ->add('deliveryOption', EntityType::class, [
                 'class' => DeliveryOptions::class,
                 'choice_label' => 'name' ,
-                'choice_value' => 'id', 
+                'choice_value' => 'name', 
                 'expanded' => false, 
                 'multiple'=> false,
             ])

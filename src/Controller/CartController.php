@@ -30,7 +30,7 @@ class CartController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
-           
+        
             $DiscountTicketBDD = $DiscountRepo->findOneby(['codeContent' => $DiscountTicket->getCodeContent()]);
             $DiscountTicketContent = intval($DiscountTicket->getCodeContent()); 
             
@@ -57,7 +57,7 @@ class CartController extends AbstractController
                     ); 
 
                 }
-               
+            
             } else {
 
                 $this->addFlash(
@@ -68,10 +68,17 @@ class CartController extends AbstractController
             }
         }
 
-       
         
-        
-        $productsAssociated = $repo_product->getProductAssociated(16);
+        $productFromCart = $cartService->getFullCart();
+        $productsAssociated = [];
+
+        foreach($productFromCart as $product){
+
+            foreach($repo_product->getProductAssociated( $product['product']->getId()) as $productTest ){
+            $productsAssociated[] = $productTest;
+            }
+            
+        }
 
         return $this->render('cart/index.html.twig', [
             'items' => $cartService->getFullCart(),
@@ -89,8 +96,9 @@ class CartController extends AbstractController
 
         $cartService->add($id);
         $product = $repo->find($id); 
+        
 
-        return $this->json(['code' => 200, 'message' => $product->getName()], 200);
+        return $this->json(['code' => 200, 'message' => $product->getName(),'quantity' => count($cartService->getFullCart())], 200);
         //return $this->redirectToRoute("cart_index");
     }
 /////////////////////////////////////////////////////////////////////////////////
@@ -126,7 +134,7 @@ class CartController extends AbstractController
         if ($discount != null){
             $cartService->addDiscount($discount); 
         }
-
+        
         return $this->redirectToRoute("cart_index");
     }
 

@@ -1,9 +1,8 @@
-<div class="card">
+<div class="card d-flex">
         <div class="card-body">
-        <p class="card-text"> Nom : {{address.nameUser}} </p>
-        <p class="card-text"> Rue : {{address.street}} </p>
-        <p class="card-text"> Code postal : {{address.zipCode}} </p>
-        <p class="card-text"> Ville : {{address.city}} </p>
+        <span class="card-text"> {{address.nameUser}} </br></span>
+        <span class="card-text"> {{address.street}} </br></span>
+        <span class="card-text"> {{address.zipCode}} {{address.city}}</span>
         <div class="d-flex">
          {% if orderMode %}
         {# <a href="{{path('order_useAddress', {'id' : address.id})}}" class="btn btn-success">Utiliser</a> #}

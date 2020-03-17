@@ -1,0 +1,64 @@
+ <div class="d-flex flex-row  ">
+        <div class="table_part">
+            <table class="table border">
+                <thead>
+                    <tr>
+                        <th>Produit</th>
+                        <th>Prix</th>
+                        <th>Quantité</th>
+                        <th>Total</th>
+                        <th></th>
+                    </tr>
+                    <tbody>
+                        {% for item in items %}
+                            <tr>
+                                
+                                <td>{{ item.product.name }}</td>
+                                <td >{{ item.product.price }} €</td>
+                                <td class="d-flex">
+                                    <form method="POST" action="{{ path('cart_modif', {'id' : item.product.id}) }}"> 
+                                       <select name="quantity" class="" id="inlineFormCustomSelect">
+                                            <option selected> {{ item.quantity }}</option>
+                                            {% set numberItems = item.product.quantity %}
+
+                                            {% if numberItems <= 10 %}
+                                             {% for i in 1..item.product.quantity %}
+                                            <option value="{{i}}">{{i}}</option>
+                                            {% endfor %}
+                                            {% else %}
+                                                 {% for i in 1..10 %}
+                                            <option value="{{i}}">{{i}}</option>
+                                            {% endfor %}
+                                            {% endif %}
+                                           
+                                            
+                                        </select
+                                        <button type="submit" class="btn btn-dark btn-sm">Modifier</button>
+                                    </form> 
+                                </td>
+                                <td>{{ item.product.price * item.quantity }} €</td>
+                                <td>
+                                    <a href="{{ path('cart_remove', {'id' : item.product.id}) }}" class="btn btn-danger btn-sm">Supprimer</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3" class="text-right">Total : </td>
+                            <td></td>
+                            <td class="text-right">{{ total }} €</td>
+                        </tr>
+                         <tr>
+                            <td colspan="3" class="text-right">Livré le : </td>
+                            <td></td>
+                            <td id= "js_poste"class="text-right">  {{ "now"|date_modify(daysDelivery[0])|date("d/m/Y") }}  </td>
+                            <td id="js_pigeon" class="text-right d-none">  {{ "now"|date_modify(daysDelivery[1])|date("d/m/Y") }}  </td>
+                        </tr>
+                    </tfoot>
+                </thead>
+            </table>
+           
+    </div>
+
+    </div>
