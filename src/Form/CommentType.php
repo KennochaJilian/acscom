@@ -19,7 +19,6 @@ class CommentType extends AbstractType
                 'attr' => ['max' => 5, 'min' => 0],
                 'label' => 'Note:',
                 'data' => '5',
-                'disabled' => true
             ])
             ->add('commentary',null, [
                 'attr' => ['placeholder' => 'Entrez votre commentaire...'],

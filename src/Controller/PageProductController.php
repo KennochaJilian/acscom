@@ -73,7 +73,8 @@ class PageProductController extends AbstractController
             'commentaries' => $commentaries,
             "user" => $user,
             'form' => $form->createView(),
-            'form_comment' => $form_comment->createView()
+            'form_comment' => $form_comment->createView(),
+            'productsAssociated' => []
         ]);
     }
 
