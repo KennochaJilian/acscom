@@ -44,7 +44,8 @@ Encore
 
     .addEntry('_card', './assets/css/_card.css')
     .addEntry('_filter', './assets/css/_filter.css')
-    .addEntry('_product', './assets/css/_product.css')
+    .addEntry('product', './assets/css/Product/product.css')
+    .addEntry('comment', './assets/js/comment.js')
 
     //ORDER
 

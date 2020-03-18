@@ -1,5 +1,10 @@
 {% extends "base.html.twig" %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('product') }}
+{% endblock %}
+
 {% block body %}
 
     <div class="container-fluid product_page my-2">
@@ -74,43 +79,6 @@
                             </a>
                             </div>
                             </div>
-                            
-                            {# <div class="col-12">
-                            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                                    <div class="carousel-inner">
-                                    <div class="carousel-item active">
-                                        <img class="d-block w-100" src="http://placehold.it/300x200" alt="First slide">
-                                        <div class="carousel-caption d-none d-md-block">
-                                            <h5>Salut</h5>
-                                            <p>20€</p>
-                                        </div>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img class="d-block w-100" src="http://placehold.it/300x200" alt="Second slide">
-                                        <div class="carousel-caption d-flex flex-row border justify-content-around align-items-center">
-                                            <h5>Tu va</h5>
-                                            <h5>10€</h5>
-                                            <div class="btn btn-danger w-50">View</div>
-                                        </div>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img class="d-block w-100" src="http://placehold.it/300x200" alt="Third slide">
-                                        <div class="carousel-caption d-none d-md-block">
-                                            <h5>Bien</h5>
-                                            <p>45€</p>
-                                        </div>
-                                    </div>
-                                    </div>
-                                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Previous</span>
-                                    </a>
-                                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Next</span>
-                                    </a>
-                                </div>
-                            </div> #}
                         </div>
                     </div>
                 
@@ -125,38 +93,36 @@
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                     {{form_start(form_comment)}}
                     <div class="row">
-                        <!-- <div align="center">
-                            <i class="fa fa-star fa-2x" data-index="0"></i>
-                            <i class="fa fa-star fa-2x" data-index="1"></i>
-                            <i class="fa fa-star fa-2x" data-index="2"></i>
-                            <i class="fa fa-star fa-2x" data-index="3"></i>
-                            <i class="fa fa-star fa-2x" data-index="4"></i>
+                        <div align="center">
+                            <i class="star" data-index="0"></i>
+                            <i class="star" data-index="1"></i>
+                            <i class="star" data-index="2"></i>
+                            <i class="star" data-index="3"></i>
+                            <i class="star" data-index="4"></i>
                             <br><br>
-                        </div> -->
-                        <div class="col-1">
-                            <button id="add_note">+</button>
-                            
                         </div>
                         <div class="col-1">
                             {{form_row(form_comment.note)}}
-                        </div>
-                        <div class="col-1">
-                            <button id="substract_note">-</button>
                         </div>
                     </div>
                     {{form_row(form_comment.commentary)}}
                     {{form_end(form_comment)}}
                 {% endif %}
                 <div>
-                    <h6>Commentaires:</h6>
+                    
+                    {% if commentaries %}
+                        <h6>Commentaires:</h6>
+                    {% endif %}
                     {% for commentary in commentaries %}
                     <div class="row">
                         <div class="col-6">
                             <h6>{{commentary.username.username}}</h6>
+                            {% if commentary.note %}
                             <p>{{commentary.note}}/5</p>
+                            {% endif %}
                             <p>{{commentary.commentary}}</p>
                         </div>
-                        {% if is_granted('IS_AUTHENTICATED_FULLY') and commentary.username.id == user.id %}
+                        {% if (is_granted('IS_AUTHENTICATED_FULLY') and commentary.username.id == user.id) or (is_granted('ROLE_ADMIN')) %}
                         <div class="col-2">
                             <a href="{{path('edit_comment', {'id' : product.id, 'idcomment' : commentary.id} )}}">edit</a>
                             <a class="js_deleteComment" data-idcomment = "{{commentary.id}}" data-id="{{product.id}}"  href="{{ path('delete_comment', {'id' : product.id, 'idcomment' : commentary.id} )}}">delete</a>
@@ -173,3 +139,7 @@
 {% endblock body %}
 
 
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('comment') }}
+{% endblock %}
