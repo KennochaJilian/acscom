@@ -2,9 +2,11 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProductRepository")
@@ -15,42 +17,54 @@ class Product
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups("product:read")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * 
+     * @Groups("product:read")
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * 
+     * @Groups("product:read")
      */
     private $cardDescription;
 
     /**
      * @ORM\Column(type="text")
+     * 
+     * @Groups("product:read")
      */
     private $description;
 
     /**
      * @ORM\Column(type="float")
+     * 
+     * @Groups("product:read")
      */
     private $price;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups("product:read")
      */
     private $quantity;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Tag", inversedBy="products")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Tag", inversedBy="products") 
+     * @Groups("product:read")
      */
     private $tag;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="products")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups("product:read")
      */
     private $category;
 
