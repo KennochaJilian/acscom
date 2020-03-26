@@ -10,7 +10,7 @@
 
 {% block body %}
 
-   <main role="main"> 
+  <main role="main"> 
 
   {% for message in app.flashes('notice') %}
 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -25,30 +25,28 @@
       <div class="album py-2 bg-light">
         <div class="container-fluid">
           <div class="row">
-
             <div class="col-md-2">
-          
-            {% include 'product/_filter.html.twig' with {form:form} only %}
+              {% include 'product/_filter.html.twig' with {form:form} only %}
             </div>
 
             <div class="col-md-8 d-flex flex-wrap no-gutters">
-
-
               <div class="col-md-12 border">
                 <img class="card-img img-fluid" src="http://placehold.it/600x200" alt="Card image">
               </div>
               
-              
               <div class="col-md-8 border">
-
               </div>
-              
               
               {% for product in products %}
                 {% include 'product/_card.html.twig' with {product:product} only %} 
               {% endfor %}
-            
+              <div class="col-12">
+                <div class="navigation d-flex justify-content-center">
+                  {{ knp_pagination_render(products) }}
+                </div>
+              </div>
             </div>
+            
             
     
         </div>
