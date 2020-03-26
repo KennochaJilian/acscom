@@ -29,14 +29,7 @@
     <h2>Historique de commande </h2>
     {% if not orders is empty %}
     {% for order in orders %}
-        <p> Commande passée le : {{order.orderDate | date("d/m/Y") }} </p>
-        <p> Statut de la commande : {{order.state}} </p>
-        
-
-        {% for product in order.ordersProducts %}
-            <p> {{product.product.name}} Quantité : {{product.quantity}}  </p>
-        {% endfor %}
-        
+         {% include 'profil_user/_historyOrder.html.twig' with {order:order} only %}       
     {% endfor %}
 
     {% else %}

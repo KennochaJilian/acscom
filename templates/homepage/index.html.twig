@@ -35,14 +35,13 @@
 
 
               <div class="col-md-12 border">
-                <img class="card-img img-fluid" src="http://placehold.it/600x200" alt="Card image">
+                <img class="card-img img-fluid" src="{{ asset('build/images/banniere_eco.jpg')}}" alt="Card image">
               </div>
               
               
               <div class="col-md-8 border">
 
               </div>
-              
               
               {% for product in products %}
                 {% include 'product/_card.html.twig' with {product:product} only %} 
