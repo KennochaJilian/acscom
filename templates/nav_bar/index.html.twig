@@ -1,9 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello NavBarController!{% endblock %}
+{% block title %}{{ category }}{% endblock %}
 
 {% block body %}
-  {% for product in products %}
+
+  <div class="container">
+  <h1> {{ category }} </h1>
+  <div class="row">
+    {% for product in products %}
     {% include 'product/_card.html.twig' with {product:product} only %} 
   {% endfor %}
+  </div>
+  </div>
+  
+
 {% endblock %}

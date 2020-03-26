@@ -1,0 +1,28 @@
+<div class="d-flex flex-row justify-content-start no-gutters ">
+    <div class="col-md-10 table_part">
+        <table class="table border">
+            <thead>
+                <tr colspan="2">
+                    <th>Commande passée le : {{order.orderDate | date("d/m/Y") }}</th>
+                </tr>
+                <tr colspan="2">
+                    <th> Statut de la commande : {{order.state}} </th> 
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in order.ordersProducts %}
+                <tr> 
+                    <td>{{ product.product.name }}</td>
+                    <td>{{ product.quantity }} €</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3"> Commande livrée le :  </td>
+                    <td colspan="3"> Jamais !  </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

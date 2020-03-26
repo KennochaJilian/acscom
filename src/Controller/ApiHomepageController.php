@@ -18,15 +18,16 @@ class ApiHomepageController extends AbstractController
     {
         $data = new SearchData(); 
 
-        $products = $productRepository->findAll(); 
-
-        $json = $request->getContent();
-        // Check si l'utilisateur vient pour une recherche, ou pour un simple affichage
+        $products = $productRepository->findAll();
         
-        if($json !== ""){
-            $data->q = json_decode($json)->q; 
+        // Check si l'utilisateur vient pour une recherche, ou pour un simple affichage
+        if($_GET['q'] !== ""){
+            $data->q = $_GET['q'];
             $products = $productRepository->findSearch($data); 
 
+        }
+        foreach($products as $product){
+            $product->setImages("../../acscom/assets/images/" . $product->getImages());
         }
         
         return $this->json($products, 200,[], ['groups' =>'product:read']); 
