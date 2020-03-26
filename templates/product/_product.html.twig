@@ -33,13 +33,17 @@
                         {% if commentaries %}
                             {% set sum_note = null %}
                             {% set loop_nbr = 0 %}
+                            {% set vote_nbr = 0 %}
                             {% for commentary in commentaries %}
                                 {% set sum_note = sum_note + commentary.note %}
                                 {% set loop_nbr = loop_nbr + 1 %}
+                                {% if commentary.note != null %}
+                                {% set vote_nbr = vote_nbr + 1 %}
+                                {% endif %}
                             {% endfor %}
                             {% if sum_note != null %}
                                 {% set average_note = sum_note / loop_nbr %}
-                                Note: {{ average_note }} /5
+                                Note: {{ average_note }} /5 (Vote: {{vote_nbr}})
                             {% endif %}
                         {% endif %}
                         <p>{{ product.description}}</p>
