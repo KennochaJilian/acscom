@@ -7,6 +7,7 @@ use App\Entity\Product;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\Query\ResultSetMapping;
+use Doctrine\ORM\QueryBuilder;
 
 
 /**
@@ -62,7 +63,8 @@ class ProductRepository extends ServiceEntityRepository
         $query = $this
             ->createQueryBuilder('p')
             ->select('c','p')
-            ->join('p.category', 'c');
+            ->join('p.category', 'c')
+            ->orderBy('p.id', 'DESC');
 
         
         if(!empty($search->q)){

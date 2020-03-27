@@ -11,6 +11,7 @@ use App\Entity\OrdersProducts;
 use App\Service\Cart\CartService;
 use App\Repository\CommentRepository;
 use App\Repository\ProductRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,7 +22,7 @@ class HomepageController extends AbstractController
     /**
      * @Route("/", name="homepage")
      */
-    public function index(ProductRepository $repositery, Request $request)
+    public function index(ProductRepository $repositery, Request $request, PaginatorInterface $paginator)
     {
         $data =new SearchData(); 
         $form = $this->createForm(SearchForm::class, $data);
@@ -30,7 +31,11 @@ class HomepageController extends AbstractController
             $data->q = $_POST['search']; 
         }
         $form->handleRequest($request); 
-        $products = $repositery->findSearch($data);
+        $products = $paginator->paginate(
+            $repositery->findSearch($data),
+            $request->query->getInt('page', 1),
+            7
+        );
 
         return $this->render('homepage/index.html.twig', [
             'products' => $products,
