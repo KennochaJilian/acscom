@@ -13,7 +13,12 @@ class DiscountTicketType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('codeContent', TextType::class,  ['attr' => ['placeholder' => "Code promo ou points de fidelité"]])
+            ->add('codeContent', TextType::class,  [
+                'label' => false,
+                'attr' => [
+                    'placeholder' => "Code promo ou points de fidelité"
+                ]
+            ])
         ;
     }
 

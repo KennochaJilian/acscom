@@ -26,11 +26,32 @@
     {% endfor %}
 
     <h2> Points de fidelité : {{fidelityPoint}}</h2>
-    <h2>Historique de commande </h2>
+    <h2>Historique de commande : </h2>
     {% if not orders is empty %}
-    {% for order in orders %}
-         {% include 'profil_user/_historyOrder.html.twig' with {order:order} only %}       
-    {% endfor %}
+        {% if orders| length > 2  %}
+            {% for  i in 0..1 %}
+                {% set order = orders[i] %}
+                {% include 'profil_user/_historyOrder.html.twig' with {order:order} only %} 
+            {% endfor %}
+
+            <a href="#orders" data-toggle="collapse" class= "btn btn-primary text-right ">Plus de détails</a>
+            <div id="orders" class="collapse">
+                {% for order in orders %}
+                    {% if  loop.index > 2  %}
+                        {% include 'profil_user/_historyOrder.html.twig' with {order:order} only %} 
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% else %}
+            {% for order in orders %}
+                {% include 'profil_user/_historyOrder.html.twig' with {order:order} only %}       
+            {% endfor %}
+        
+    
+        {% endif %}
+   
+
+  
 
     {% else %}
         <p> Vous n'avez pas encore commandé sur notre site :( </p>
