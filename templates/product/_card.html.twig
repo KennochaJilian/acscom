@@ -1,51 +1,21 @@
-{# 
-<div class="col-md-12 col-lg-4">
-
-    <div class="card">
-        <img class="card-img img-fluid" src="{{ asset('build/images/' ~ product.images)}}" alt="Card image">
-        <div class="d-flex flex-column card-img-overlay justify-content-end text-center">
-            <h4> {{product.name}} </h4> 
-            <p class="card-text"> {{ product.cardDescription}}</p>
-            <em class="text-muted text-primary text-italic ">
-                #{{product.category.name}}
-            </em>
-            <div class="d-flex flex-row justify-content-between align-items-center">
-                <div class="btn-group">
-                    <a class="btn btn-sm btn-outline-secondary" href="{{ path('pageProduct', {'id' : product.id})}}">View</a>
-                </div>
-
-                <strong class="text-muted" style="font-size: 30px;">{{product.price | number_format(0,',', ' ')}} €</strong>
-                
-                <div class="btn-group">
-                    <a class="js_addCartLink btn btn-sm btn-dark btn-outline-secondary" href="{{path ('cart_add', {'id' : product.id})}}">Ajouter au panier</a>
-                </div>
-
-            </div>
-
+<div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+    <div class="card card h-100">
+    <img class="card-img custom" src="{{ asset('build/images/' ~ product.images)}}" alt="Card image">
+        <div class="card-img-overlay d-flex justify-content-between">
+            <h5 class="text-muted" style="font-size: 1.5em;">{{product.price | number_format(0,',', ' ')}} €</h5>
+            <h6>#{{product.category.name}}</h6>
+        </div>
+        <div class="card-body">
+            <h4 class="card-title text-center">{{product.name}}</h4>
+            {# <small class="text-muted cat">
+                <i class="far fa-clock text-info"></i> 30 minutes
+                <i class="fas fa-users text-info"></i> 4 portions
+            </small> #}
+            <p class="card-text text-center"> {{ product.cardDescription}}</p>
+        </div>
+        <div class="btn-group btn-block">
+            <a class="btn btn-outline-secondary" href="{{ path('pageProduct', {'id' : product.id})}}">Voir</a>
+            <a class="js_addCartLink btn btn-secondary" href="{{path ('cart_add', {'id' : product.id})}}">Ajouter au panier</a>
         </div>
     </div>
-
-</div> #}
-
-
-    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
-        <div class="card card h-100">
-        <img class="card-img custom" src="{{ asset('build/images/' ~ product.images)}}" alt="Card image">
-            <div class="card-img-overlay d-flex justify-content-between">
-                <h5 class="text-muted" style="font-size: 1.5em;">{{product.price | number_format(0,',', ' ')}} €</h5>
-                <h6>#{{product.category.name}}</h6>
-            </div>
-            <div class="card-body">
-                <h4 class="card-title text-center">{{product.name}}</h4>
-                {# <small class="text-muted cat">
-                    <i class="far fa-clock text-info"></i> 30 minutes
-                    <i class="fas fa-users text-info"></i> 4 portions
-                </small> #}
-                <p class="card-text text-center"> {{ product.cardDescription}}</p>
-            </div>
-            <div class="btn-group btn-block">
-                <a class="btn btn-outline-secondary" href="{{ path('pageProduct', {'id' : product.id})}}">Voir</a>
-                <a class="js_addCartLink btn btn-secondary" href="{{path ('cart_add', {'id' : product.id})}}">Ajouter au panier</a>
-            </div>
-        </div>
-    </div>
+</div>
