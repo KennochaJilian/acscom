@@ -2,10 +2,13 @@
 
 namespace App\Controller;
 
-use App\Repository\CategoryRepository;
+use App\Data\SearchData;
+use App\Form\SearchForm;
 use App\Repository\ProductRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\CategoryRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class NavBarController extends AbstractController
 {
@@ -14,22 +17,36 @@ class NavBarController extends AbstractController
     /**
      * @Route("/pageCategory/{id}", name="pageCategory")
      */
-   public function pageCategory($id, ProductRepository $repositery, CategoryRepository $categoryRepository)
-   {
+    public function pageCategory($id, ProductRepository $repository, CategoryRepository $categoryRepository, Request $request)
+    {
 
-    
-    $products = $repositery->findBy([
+    $products = $repository->findBy([
         'category' => $id
     ]);
     $nameCategory = $categoryRepository->findOneBy([
         'id' => $id 
     ])->getName(); 
+
     
-     return $this->render('nav_bar/index.html.twig', [
+    $data =new SearchData(); 
+    $form = $this->createForm(SearchForm::class, $data);
+    if(!empty($_POST)){
+        $data->max = $_POST['max']; 
+        $data->min = $_POST['min'];
+        $form->handleRequest($request); 
+        $products = $repository->findbyCategory($data, $id);
+        
+    }
+    
+    
+
+    
+    return $this->render('nav_bar/index.html.twig', [
             'products' => $products,
-            'category' =>$nameCategory
+            'category' =>$nameCategory,
+            'form' => $form->createView()
         ]);
 
 
-   }
+    }
 }
