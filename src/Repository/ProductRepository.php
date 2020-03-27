@@ -105,6 +105,35 @@ class ProductRepository extends ServiceEntityRepository
 
     }
 
+    public function findByCategory(SearchData $search, $id){
+        $query = $this
+            ->createQueryBuilder('p')
+            ->select('c','p')
+            ->join('p.category', 'c')
+            ->orderBy('p.id', 'DESC');
+
+        if(!empty($search->min)){
+            
+            $query = $query
+                ->andWhere('p.price >= :min')
+                ->andWhere("c.id = $id")
+                ->setParameter('min', $search->min);
+            
+
+        }
+
+        if(!empty($search->max)){
+            
+            $query = $query
+                ->andWhere('p.price <= :max')
+                ->andWhere("c.id = $id")
+                ->setParameter('max', $search->max);   
+
+        }
+        return $query->getQuery()->getResult();
+
+    }
+
     public function getProductAssociated($idProduct)
     {
 

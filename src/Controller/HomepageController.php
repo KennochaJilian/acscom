@@ -22,7 +22,7 @@ class HomepageController extends AbstractController
     /**
      * @Route("/", name="homepage")
      */
-    public function index(ProductRepository $repositery, Request $request, PaginatorInterface $paginator)
+    public function index(ProductRepository $repository, Request $request, PaginatorInterface $paginator)
     {
         $data =new SearchData(); 
         $form = $this->createForm(SearchForm::class, $data);
@@ -32,7 +32,7 @@ class HomepageController extends AbstractController
         }
         $form->handleRequest($request); 
         $products = $paginator->paginate(
-            $repositery->findSearch($data),
+            $repository->findSearch($data),
             $request->query->getInt('page', 1),
             7
         );
