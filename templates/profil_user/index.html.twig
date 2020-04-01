@@ -1,13 +1,16 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('profiluser') }}
+{% endblock %}
+
 {% block title %}Ajouter une adresse{% endblock %}
 
 {% block body %}
-<h1> Profil </h1>
 
 
-
-<div class="container">
+<div class="container p-4">
 {% for message in app.flashes('notice') %}
 <div class="alert alert-success alert-dismissible fade show" role="alert">
     {{ message }}
@@ -18,15 +21,9 @@
 {% endfor %}
 <div class="row"> 
     <div class="col-md-6">
-    <h2>Adresses favorites</h2>
-    <a href="{{path('profil_addAddress')}}" class="btn btn-success">Ajouter une adresse</a>
     
-    {% for address in addressUser %}
-        {% include 'address/_cardAddress.html.twig' with {address:address, orderMode:orderMode} only %}
-    {% endfor %}
-
-    <h2> Points de fidelité : {{fidelityPoint}}</h2>
     <h2>Historique de commande : </h2>
+
     {% if not orders is empty %}
         {% if orders| length > 2  %}
             {% for  i in 0..1 %}
@@ -34,7 +31,7 @@
                 {% include 'profil_user/_historyOrder.html.twig' with {order:order} only %} 
             {% endfor %}
 
-            <a href="#orders" data-toggle="collapse" class= "btn btn-primary text-right ">Plus de détails</a>
+            <a href="#orders" data-toggle="collapse" class= "button--adress btn  text-right ">Plus de détails ...</a>
             <div id="orders" class="collapse">
                 {% for order in orders %}
                     {% if  loop.index > 2  %}
@@ -60,16 +57,36 @@
 
 
     <div class="col-md-6">
-        <h2> Modifier votre mot de passe </h2>
 
-    {{form_start(form)}}
-    {{form_row(form.oldPassword)}}
-	{{form_row(form.password.first)}}
-	{{form_row(form.password.second)}}
-	<button class=""  type="submit">Envoyer</button>
-    {{form_end(form)}}
+
+    <h2>Adresses favorites :</h2>
+    
+    {% for address in addressUser %}
+        {% include 'address/_cardAddress.html.twig' with {address:address, orderMode:orderMode} only %}
+    {% endfor %}
+    <div class="row justify-content-between align-items-center no-gutters">
+        <h4> Vos points de fidélité : {{fidelityPoint}}</h4>
+        <a href="{{path('profil_addAddress')}}" class="button--adress btn my-2 ">+ Ajouter une adresse</a>
 
     </div>
+
+
+    <div class="mdp--box row no-gutters mt-4 p-4 justify-content-center border">
+        <h2 style="margin-bottom: 20px;"> Modifier votre mot de passe </h2>
+
+        {{form_start(form)}}
+        {{form_row(form.oldPassword)}}
+        {{form_row(form.password.first)}}
+        {{form_row(form.password.second)}}
+        <div class="row">
+            <button class="button--adress btn mx-auto w-50"  type="submit">Envoyer</button>
+        </div>
+        {{form_end(form)}}
+    </div>
+   
+
+    </div>
+
 
 </div>
     

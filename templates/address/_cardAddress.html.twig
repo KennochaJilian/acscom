@@ -3,13 +3,15 @@
         <span class="card-text"> {{address.nameUser}} </br></span>
         <span class="card-text"> {{address.street}} </br></span>
         <span class="card-text"> {{address.zipCode}} {{address.city}}</span>
-        <div class="d-flex">
+        <div class="d-flex mt-2">
          {% if orderMode %}
         {# <a href="{{path('order_useAddress', {'id' : address.id})}}" class="btn btn-success">Utiliser</a> #}
         {% endif %}
-        <a href="{{path('profil_updateAddress', {'id' : address.id})}}" class="btn btn-warning">Modifier</a>
-        <a href="{{path('profil_rmAddress', {'id' : address.id})}}" class="btn btn-danger">Supprimer</a> 
+        <a href="{{path('profil_updateAddress', {'id' : address.id})}}" class="btn btn-dark mr-2">Modifier</a>
+        <a href="{{path('profil_rmAddress', {'id' : address.id})}}" class="btn btn-danger"><i class="fas fa-trash"></i></a> 
               
         </div>        
         </div>
     </div>  
+
+    

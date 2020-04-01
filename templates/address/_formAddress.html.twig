@@ -1,4 +1,4 @@
-    <div class="col-md-6">
+    <div class="col-md-6 mx-auto">
         {{form_start(form) }}
 
             {{form_row(form.nameUser, {'label': 'Nom', 'attr': {'placeholder' : 'Nom'}}) }}
@@ -8,7 +8,7 @@
             {{form_row(form.deliveryAdress, {'label': 'Est ce une adresse de livraison ?'}) }}
 
             {% if editMode %}    
-                <button class="btn btn-success"> Modifier l'adresse !<button>
+                <button class="btn btn-danger"> Modifier l'adresse !<button>
             {% else %}
                 <button class="btn btn-success"> Ajouter une adresse !<button>
             {% endif %}

@@ -18,30 +18,34 @@
 
     </head>
     <body>
+      {% block side_filter %}
+      {% endblock %}
 
         <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="position: fixed; bottom: 0; right: 0; left: 0; z-index: 99;  border-top: 1px solid black">
-      <a class="navbar-brand" href="{{path('homepage')}}"><img class="w-50" src="{{ asset('build/images/logo.png' ) }}" alt="LOGO"></a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-start border " style="position: fixed; bottom: 0; right: 0; left: 0; z-index: 99;  -top: 1px solid black">
+      
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar_home navbar-nav mx-auto align-items-center  justify-content-around p-1 ">
+      <a href="{{path('homepage')}}"><img class="w-50  " src="{{ asset('build/images/logo.png' ) }}" alt="LOGO"></a>
       <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar_home navbar-nav mx-auto ">
-      <li class="nav-item p-1">
+      <li class="nav-item ">
         <a class="nav-link"  href="{{ path('pageCategory', {'id' : 1}) }}">Vêtement <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item p-1">
+      <li class="nav-item">
         <a class="nav-link"  href="{{ path('pageCategory', {'id' : 2}) }}">Accessoires</a>
       </li>
-      <li class="nav-item p-1">
+      <li class="nav-item">
         <a class="nav-link"  href="{{ path('pageCategory', {'id' : 4}) }}">Maison</a>
       </li>
-      <li class="nav-item p-1">
+      <li class="nav-item">
         <a class="nav-link"  href="{{ path('pageCategory', {'id' : 5}) }}">Fournitures</a>
       </li>
-      <li class="nav-item p-1">
+      <li class="nav-item">
         <a class="nav-link"  href="{{ path('pageCategory', {'id' : 6}) }}">Peluche</a>
+<<<<<<< HEAD
       </li>   
     
     <div class="col-3 d-flex flex-row justify-content-center">
@@ -55,69 +59,48 @@
     </div>
       
         <li class="nav-item p-1 ">
+=======
+      </li>
+
+      <li>
+        <form method"POST" action="{{ path('homepage') }}" class=" form-inline d-flex justify-content-center md-form form-sm mt-0">
+          <input name="search" class="form-control form-control-sm ml-3 w-75" type="search" placeholder="Search"
+            aria-label="Search">
+            <i class="nav-link fas fa-search" aria-hidden="true"></i>
+
+        </form>
+      </li>
+
+        <li class="nav-item ">
+>>>>>>> cef65181673f25ecf031fe1daacb2e883c19e661
             <a class="nav-link"  href="{{ path('contact_form') }}">Contact <span class="sr-only">(current)</span></a>
           </li>
       {% if not app.user %}
-      <li class="nav-item p-1 ">
+      <li class="nav-item ">
         <a class="nav-link"  href="{{ path('security_login') }}"> Connexion <span class="sr-only">(current)</span></a>
       </li>
 
       {% else %}
-        <li class="nav-item p-1 ">
+        <li class="nav-item ">
         <a class="nav-link"  href="{{ path('profil_user') }}"> Profil <span class="sr-only">(current)</span></a>
       </li>
-        <li class="nav-item p-1 ">
+        <li class="nav-item ">
         <a class="nav-link"  href="{{ path('security_logout') }}"> Deconnexion <span class="sr-only">(current)</span></a>
       </li>
       {% endif %}
-      <li class="nav-item p-1 d-flex">
-        <a class="nav-link"  href="{{ path('cart_index') }}">Panier</a>
-        <p id="js_pillCart"class="badge badge-danger">{{app.session.get('panier')|length}}</p>
-      </li>          
+      <li class="nav-item d-flex">
+        <i class="nav-link fas fa-shopping-cart" href="{{ path('cart_index') }}" aria-hidden="true"></i>
+         <a class="nav-link"  href="{{ path('cart_index') }}">Panier</a>
+        <p id="js_pillCart"class="badge badge-danger p-1 mr-2">{{app.session.get('panier')|length}}</p>
+      </li> 
+      <li>
+          <a class="nav-link"  href="{{ path('legal_disclaimers') }}">Mentions légales</a>
+      </li>
+         
     </ul>
-    <span class="font-weight-light">
-      <a class="text-decoration-none text-black-50"  href="{{ path('legal_disclaimers') }}">Mentions légales</a>
-    </span> 
-
   </div>
 </nav>
       </header>
-
-{# <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </div>
-</nav> #}
 
 
         {% block body %}{% endblock %}
