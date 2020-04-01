@@ -22,33 +22,27 @@
 {% endfor %}
   
 
-      <div class="album py-2 bg-light">
+      <div class="album py-2" style="background-color: #F2D5CE;">
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-2">
               {% include 'product/_filter.html.twig' with {form:form} only %}
             </div>
 
-            <div class="col-md-8 d-flex flex-wrap no-gutters">
+            <div class="col-md-8 d-flex flex-wrap">
               <div class="col-md-12 border">
                 <img class="card-img img-fluid" src="{{ asset('build/images/banniere_eco.jpg')}}" alt="Card image">
-              </div>
-              
-              <div class="col-md-8 border">
               </div>
               
               {% for product in products %}
                 {% include 'product/_card.html.twig' with {product:product} only %} 
               {% endfor %}
               <div class="col-12">
-                <div class="navigation d-flex justify-content-center">
+                <div class="navigation--home navigation d-flex justify-content-center p-4 mt-2">
                   {{ knp_pagination_render(products) }}
                 </div>
               </div>
             </div>
-            
-            
-    
         </div>
 
 

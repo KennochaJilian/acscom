@@ -8,11 +8,11 @@
 {% endblock %}
 
 {% block body %}
-<div class="container form_container" style="position:absolute;top:40%; left:50%; transform: translate(-50%,-50%);">
+<div class="container form_container">
     <div class="d-flex flex-column text-center p-4 ">
-        <h1> Besoin d'aide? </h1>
+        <h1> Besoin d'aide ? </h1>
     </div>
-    <div class="d-flex flex-column w-100 mx-auto border p-4" style="background-color: #FFE9BD;">
+    <div class="d-flex flex-column w-50 mx-auto text-center p-4">
 
 {{ form_start(contactForm)}}
 
@@ -22,7 +22,7 @@
     {{ form_row(contactForm.reason)}}
     {{ form_row(contactForm.content)}}
     
-    <button type="submit" class="btn btn-dark w-25 mx-auto mt-4">Envoyer</button>
+    <button type="submit" class="button--help button btn text-center">Envoyer !</button>
     
     {{ form_end(contactForm)}}
 

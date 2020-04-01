@@ -1,21 +1,33 @@
-<div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
-    <div class="card card h-100">
-    <img class="card-img custom" src="{{ asset('build/images/' ~ product.images)}}" alt="Card image">
-        <div class="card-img-overlay d-flex justify-content-between">
-            <h5 class="text-muted" style="font-size: 1.5em;">{{product.price | number_format(0,',', ' ')}} €</h5>
-            <h6>#{{product.category.name}}</h6>
-        </div>
+
+
+
+
+<div class="col-sm-12 col-md-6 col-lg-6 col-xl-4 mb-4">
+    <div class="card card ">
+    <img class="card-img custom" style="background-color: #AEF2F2;" src="{{ asset('build/images/' ~ product.images)}}" alt="Card image">
         <div class="card-body">
-            <h4 class="card-title text-center">{{product.name}}</h4>
+            <h4 class="card-title text-center" style="font-family: 'Baloo';">{{product.name}}</h4>
             {# <small class="text-muted cat">
                 <i class="far fa-clock text-info"></i> 30 minutes
                 <i class="fas fa-users text-info"></i> 4 portions
             </small> #}
-            <p class="card-text text-center"> {{ product.cardDescription}}</p>
+            
+            <p class="card-text text-center" style="font-family: 'Montserrat';font-size: 12px;"> {{ product.cardDescription}}</p>
+            
+            <div class=" card-img d-flex flex-column ">
+                <div class="row justify-content-around align-items-center mb-2">
+                    <h5 class="text-muted" style="font-size: 2em;">{{product.price | number_format(0,',', ' ')}} €</h5>
+                    <a class="btn w-50" href="{{ path('pageProduct', {'id' : product.id})}}" style="background-color: black; color:white;font-family: 'Baloo';">Voir</a>
+                    
+                </div>
+                {# <a class="js_addCartLink btn btn-secondary w-50" href="{{path ('cart_add', {'id' : product.id})}}">Ajouter au panier</a> #}
+                <div class="row no-gutters pt-2">
+                    <p style="font-size: 10px;">#{{product.category.name}}</p>
+                </div>
+    
+            </div>
         </div>
-        <div class="btn-group btn-block">
-            <a class="btn btn-outline-secondary" href="{{ path('pageProduct', {'id' : product.id})}}">Voir</a>
-            <a class="js_addCartLink btn btn-secondary" href="{{path ('cart_add', {'id' : product.id})}}">Ajouter au panier</a>
-        </div>
+        
     </div>
 </div>
+
