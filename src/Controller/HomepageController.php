@@ -28,9 +28,9 @@ class HomepageController extends AbstractController
         $form = $this->createForm(SearchForm::class, $data);
 
         if(!empty($_POST)){
-            $data->q = $_POST['search']; 
+            $data->q = $_POST['search'];
         }
-        $form->handleRequest($request); 
+        $form->handleRequest($request);
         $products = $paginator->paginate(
             $repository->findSearch($data),
             $request->query->getInt('page', 1),
