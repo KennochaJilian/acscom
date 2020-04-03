@@ -31,6 +31,7 @@ class PageProductController extends AbstractController
         $product = $repo_product->find($id);
         $form = $this->createFormBuilder()
             ->add('quantity', NumberType::class, [
+                'label' => 'Quantité', 
                 'data' => '1'
             ])
             ->add('Ajouter', SubmitType::class)

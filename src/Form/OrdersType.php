@@ -26,6 +26,7 @@ class OrdersType extends AbstractType
             
             ->add('optionGift')
             ->add('deliveryOption', EntityType::class, [
+                'label' => 'Options de livraison',
                 'class' => DeliveryOptions::class,
                 'choice_label' => 'name' ,
                 'choice_value' => 'name', 
@@ -33,6 +34,7 @@ class OrdersType extends AbstractType
                 'multiple'=> false,
             ])
             ->add('deliveryAddress', EntityType::class, [
+                'label' => 'Adresse de livraison',
                 'class' => Adress::class,
                 'query_builder' => function(AdressRepository $repo){
                     return $repo->getAdressUser($this->security->getUser()); 
@@ -43,6 +45,7 @@ class OrdersType extends AbstractType
                 'multiple'=> false,
             ])
             ->add('facturationAddress',  EntityType::class, [
+                'label' => 'Adresse de facturation', 
                 'class' => Adress::class,
                 'query_builder' => function(AdressRepository $repo){
                     return $repo->getAdressUser($this->security->getUser()); 

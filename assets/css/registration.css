@@ -1,5 +1,6 @@
 body {
-    background-color: #F2D5E3;    
+    background-color: #F8EBB7;
+    color: white;
     
 }
 
@@ -9,7 +10,8 @@ body {
 h1 {
 
     font-family: 'Baloo', sans-serif;
-    color: #0433BF;
+    color: white;
+    background-color:  black;
 }
 
 form {
@@ -19,13 +21,7 @@ form {
 
 form * label {
     font-family: 'Baloo', sans-serif;
-    color: #0433BF;
-    
-}
-
-legend {
-    font-family: 'Baloo', sans-serif;
-    color: #0433BF;
+    color: black;
 }
 
 .button--registration {
@@ -36,11 +32,5 @@ legend {
     font-family: 'Baloo', sans-serif;
     letter-spacing: 1px;
     
-
-}
-
-.button--registration:hover {
-    background-color: #0433BF;
-    color: #F2D5E3;
 
 }
