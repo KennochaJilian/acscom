@@ -1,13 +1,13 @@
 <div class="d-flex flex-row justify-content-start no-gutters ">
     <div class="col-md-12 table_part">
-        <table class="table border">
-        <thead>
+        <table class="table border bg-light">
+        <thead style="background-color: #9C9AD9; color: white;">
         <tr>
         <th> Commande passée le : </th>
         <th> {{order.orderDate | date("d/m/Y") }} </th>
         
         </tr>
-        <tr>
+        <tr style="background-color: #032CA6;">
         <th> Statut de la commande : </th>
         <th> {{order.state}} </th>
         </tr>
@@ -20,7 +20,7 @@
           {% for product in order.ordersProducts %}
                 <tr> 
                     <td>{{ product.product.name }}</td>
-                    <td>{{ product.quantity }} </td>
+                    <td style="font-weight: bold;">{{ product.quantity }} </td>
                 </tr>
                 {% endfor %}
         
@@ -28,7 +28,7 @@
         <tfoot>
         <tr> 
         <td> Commande livrée le : </td>
-        <td> Jamais ! </td>
+        <td > Jamais ! </td>
         </tr>
         </tfoot>
         </table>

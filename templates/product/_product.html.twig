@@ -15,9 +15,8 @@
             <div class=" d-flex flex-column col-6">
 
                     <div class="card text-white align-items-end">
-                        <img class="image_card card-img img-fluid" style= "background-color : #41BFA8; " src="{{ asset('build/images/' ~ product.images)}}" alt="Card image">
+                        <img class="image_card card-img img-fluid" style= "background-color: #9C9AD9; border: 2px solid black;" src="{{ asset('build/images/' ~ product.images)}}" alt="Card image">
                         <div class="d-flex flex-column card-img-overlay justify-content-end">
-                            <h1 class="card-title">{{ product.name}}</h1>
                         </div>
                     </div>     
 
@@ -26,9 +25,9 @@
 
             <div class="d-flex flex-column col-4 image_info px-2 ">
 
-                <div class="row no-gutters">
-                    <div class="col-12 border ">
-                        <div class="d-flex flex-column justify-content-between p-2 no-gutters">
+                <div class="row">
+                    <div class=" col-12 ">
+                        <div class=" d-flex flex-column justify-content-between p-2 no-gutters" style="border: 2px solid black;">
                             <h2>{{ product.name}}</h2>
                         {% if commentaries %}
                             {% set sum_note = null %}
@@ -46,29 +45,30 @@
                                 Note: {{ average_note }} /5 (Vote: {{vote_nbr}})
                             {% endif %}
                         {% endif %}
+                        <p>Description :</p>
                         <p><em>{{ product.description}}</em></p>
                         </div>
                         
                         <div class="row justify-content-between no-gutters">
-                            <div class="price_box d-flex flex-column col-4 px-2 justify-content-center border">
-                                <p>{{ product.price}} €</p>
+                            <div class="price_box  d-flex flex-column col-4 px-2 justify-content-center ">
+                                <p>{{ product.price}},00 €</p>
                         
                             </div>
-                            <div class="col-8 p-2 border">
-                            <h4>{{form(form)}}</h4>
+                            <div class="col-8 p-2" style="border: 2px solid black;">
+                            <h4 class="w-100">{{form(form)}}</h4>
                             </div>
                         </div>
 
                         <div class="row no-gutters">
 
                             <div class="col-12  p-4">
-                            <h4 style="text-align: center;">Produits complémentaires</h4>
+                            <h5 style="text-align: center; font-family: 'Baloo',sans-serif;">Produits complémentaires</h5>
                             <hr>
                             </div>
                             {# CARROUSSEL #}
 
                             <div class="col-12">
-                                <div id="carouselExampleIndicators" class="carousel slide w-50 mx-auto" data-ride="carousel">
+                                <div id="carouselExampleIndicators" class="carousel  w-75 slide mx-auto"  data-ride="carousel">
                                     <div class="carousel-inner">
 
                             {% set activeCarrousel = false %}
@@ -80,25 +80,20 @@
                                 {% else %}
                                 <div class="carousel-item">
                                 {% endif %}
-                                
-                                        <img class="img-fluid d-block" src="{{ asset('build/images/' ~ product.images)}}" alt="First slide">
-                                        <div class="carousel-caption d-none d-md-block">
-                                            <h4>{{product.name}}</h4>
-                                            <p class="price">{{product.price}}</p>
-                                            <a  class=" btn btn-info" href="{{path ('pageProduct', {'id' : product.id})}}">Voir</a>
+                                    <div class="d-flex flex-column text-center mx-4 pt-2">
+                                        <h4 class="carousel--name text-center">{{product.name}}</h4>
+                                        <p class="price">{{product.price}} ,00 €</p>
+                                    </div>
+                                        <img class="img-fluid d-block" style="background-color: #F2D5E3;" src="{{ asset('build/images/' ~ product.images)}}" alt="First slide">
+                                        <div class="carousel--css carousel-caption d-none d-md-block">
+                                            <!-- <h4>{{product.name}}</h4> -->
+                                            <!-- <p class="price">{{product.price}} ,00 €</p> -->
+                                            <a  class="button--carousel btn w-50 mx-auto" href="{{path ('pageProduct', {'id' : product.id})}}">Voir</a>
                                         </div>
                                 </div>
                             {% endfor %}
                                 </div>
 
-                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Previous</span>
-                            </a>
-                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                            </a>
                             </div>
                             </div>
                         </div>

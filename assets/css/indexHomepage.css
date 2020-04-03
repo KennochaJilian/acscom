@@ -1,3 +1,19 @@
 body {
+    background-color: #F2D5E3;
     font-family: 'Montserrat', sans-serif;
+    background-size: cover;
 }
+
+.icone--home {
+    color: white;
+}
+
+.button--home {
+
+    background-color: black;
+    font-family: 'Baloo', sans-serif;
+    border-radius: 10%;
+    color: white;
+    margin-bottom: 70px;
+}
+

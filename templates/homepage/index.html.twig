@@ -22,7 +22,7 @@
 {% endfor %}
   
 
-      <div class="album py-2" style="background-color: #F2D5CE;">
+      <div class="album py-2">
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-2">
@@ -30,8 +30,8 @@
             </div>
 
             <div class="col-md-8 d-flex flex-wrap">
-              <div class="col-md-12 border">
-                <img class="card-img img-fluid" src="{{ asset('build/images/banniere_eco.jpg')}}" alt="Card image">
+              <div class="col-md-12 my-4">
+                <img class="card-img img-fluid" style="border:2px solid black;" src="{{ asset('build/images/banniere_eco.jpg')}}" alt="Card image">
               </div>
               
               {% for product in products %}
@@ -53,19 +53,17 @@
 
 
 {% block side_filter %}
-<div class="container-fluid">
-    <div class="col-md-2 fixed-bottom" style="margin-bottom:100px;">
-        <div class="col-12">
+<div class="container">
+    <div class="col-md-2 fixed-bottom py-4" style="z-index: 98;">
+        <div class="col-12 text-right">
             <div class="collapse" id="navbarToggleExternalContent">
               {% include 'product/_filter.html.twig' with {form:form} only %}
             </div>
-            <div class="col-2">
-            <div class="navbar navbar-light">
-              <button class="navbar-toggler bg-light" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-            </div>
-          </div>
+              <a class="button--home btn" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="icone--home fas fa-sort-amount-up"></i>
+                <!-- <span class="navbar-toggler-icon"><i class="fas fa-sort-amount-up-alt"></i></span> -->
+              </a>
+          
         </div>
       </div>
   </div>

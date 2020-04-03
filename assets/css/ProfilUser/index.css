@@ -1,0 +1,38 @@
+body {
+    background-color: khaki;
+}
+
+form {
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+
+
+h1 {
+    font-family: 'Baloo', sans serif;
+}
+
+h2 {
+    font-weight: bold;
+    font-size: 25px;
+}
+
+
+.button--help {
+
+    background-color: black;
+    font-family: 'Baloo', sans-serif;
+    border-radius: 20px;
+    color: white;
+
+}
+
+.button--help:hover {
+
+    color: blueviolet;
+}
+
+.register_form {
+    background-color: white;
+}

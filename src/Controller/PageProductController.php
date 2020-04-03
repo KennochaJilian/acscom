@@ -33,7 +33,7 @@ class PageProductController extends AbstractController
             ->add('quantity', NumberType::class, [
                 'data' => '1'
             ])
-            ->add('Ajouter au panier', SubmitType::class)
+            ->add('Ajouter', SubmitType::class)
             ->getForm();
 
         $form->handleRequest($request);

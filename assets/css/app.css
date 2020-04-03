@@ -1,1 +1,13 @@
 @import "~bootstrap";
+.navbar--home {
+    background-color: white;
+    border-top: 2px solid black;
+    
+}
+a {
+    font-size: small;
+    font-family: 'Baloo', sans-serif;
+    color: #032CA6;
+    letter-spacing: 1px;
+    
+}

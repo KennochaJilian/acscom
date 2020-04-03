@@ -1,6 +1,6 @@
 body {
     font-family: 'Montserrat',sans-serif;
-    background-color: #CDEFE3;
+    background-color: #F2D5E3;
     
 }
 
@@ -11,8 +11,8 @@ h1 {
 }
 
 h2 {
-    font-weight: bold;
-    font-size: 100px;
+    font-weight: 800;
+    font-size: 30px;
 }
 
 
@@ -27,7 +27,9 @@ h2 {
 
 .button--login:hover {
 
-    color: 
+    background-color: #9C9AD9;
+    color: white;
+    text-decoration: none;
 }
 
 .register_form {

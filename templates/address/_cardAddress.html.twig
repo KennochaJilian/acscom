@@ -1,4 +1,9 @@
-<div class="card d-flex">
+
+
+{% block body %}
+
+
+<div class="card d-flex" style="font-family: 'Montserrat'; font-weight: 300;">
         <div class="card-body">
         <span class="card-text"> {{address.nameUser}} </br></span>
         <span class="card-text"> {{address.street}} </br></span>
@@ -13,5 +18,7 @@
         </div>        
         </div>
     </div>  
+
+{% endblock %}
 
     

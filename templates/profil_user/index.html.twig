@@ -2,7 +2,8 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    {{ encore_entry_link_tags('profiluser') }}
+    {{ encore_entry_link_tags('indexContact') }}
+
 {% endblock %}
 
 {% block title %}Ajouter une adresse{% endblock %}
@@ -71,8 +72,8 @@
     </div>
 
 
-    <div class="mdp--box row no-gutters mt-4 p-4 justify-content-center border">
-        <h2 style="margin-bottom: 20px;"> Modifier votre mot de passe </h2>
+    <div class="mdp--box row no-gutters mt-4 p-4 justify-content-center" style="background-color: #4563BF; color: white;">
+        <h2 style="margin-bottom: 20px;"> Modifier votre mot de passe<i class="fas fa-unlock ml-4"></i></h2>
 
         {{form_start(form)}}
         {{form_row(form.oldPassword)}}

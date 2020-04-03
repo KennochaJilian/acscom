@@ -4,6 +4,41 @@
 
 
 {% block body %}
+<style>
+
+    body {
+        font-family: 'Montserrat', sans-serif;
+        color: #032CA6;
+    }
+
+    h1,h4,h2 {font-family: 'Baloo', sans-serif; }
+
+    .button--next {
+        background-color: #4563BF;
+        font-family: 'Baloo', sans-serif;
+        border-radius: 20px;
+        color: white;
+    }
+    .button--return {
+        background-color: black;
+        font-family: 'Baloo', sans-serif;
+        border-radius: 20px;
+        color: white;
+    }
+
+    .box--price {
+        font-family: 'Baloo', sans-serif;
+        background-color: white;
+        color: #032CA6;
+        border: 1px solid #032CA6;
+    }
+
+    .box--total {
+        border: 1px solid #032CA6;
+
+    }
+
+</style>
 
 <h1 class="p-4">Passer la commande </h1>
 <div class="container">
@@ -35,13 +70,13 @@
         <div class="col-md-4">
         
             <div class="card">
-                <div class="card-body">
+                <div class="card-body p-2" style="background-color:#9C9AD9;">
               
                     {% if reducedAmount != null %}
                      
-                    <p> Montant total: <del>{{ total }} </del> {{ reducedAmount}} € </p>
+                    <h4 class="text-center"> Montant total: <del>{{ total }} </del> {{ reducedAmount}} € </h4>
                     {% else %}
-                    <p> Montant total : {{ total }} € </p>
+                    <h4 class="text-center"> Montant total : {{ total }} € </h4>
                     {% endif %}
                     
                 </div>

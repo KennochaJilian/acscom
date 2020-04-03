@@ -22,12 +22,12 @@
       {% endblock %}
 
         <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-start border " style="position: fixed; bottom: 0; right: 0; left: 0; z-index: 99;  -top: 1px solid black">
+    <nav class="navbar--home navbar navbar-expand-lg " style="position: fixed; bottom: 0; right: 0; left: 0; z-index: 99;  -top: 1px solid black">
       
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar_home navbar-nav mx-auto align-items-center  justify-content-around p-1 ">
-      <a href="{{path('homepage')}}"><img class="w-50  " src="{{ asset('build/images/logo.png' ) }}" alt="LOGO"></a>
+    <ul class="navbar-nav mx-auto align-items-center  justify-content-between ">
+      <a href="{{path('homepage')}}"><img class="w-50" src="{{ asset('build/images/logo.png' ) }}" alt="LOGO"></a>
       <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>

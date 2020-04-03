@@ -1,3 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<style>
+
+    body {
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    h1,h4 {font-family: 'Baloo', sans-serif; color:#032CA6;}
+
+    .button--next {
+        background-color: #4563BF;
+        font-family: 'Baloo', sans-serif;
+        border-radius: 20px;
+        color: white;
+    }
+    .button--return {
+        background-color: black;
+        font-family: 'Baloo', sans-serif;
+        border-radius: 20px;
+        color: white;
+    }
+
+    .box--price {
+        font-family: 'Baloo', sans-serif;
+        background-color: white;
+        color: #032CA6;
+        border: 1px solid #032CA6;
+    }
+
+    .box--total {
+        border: 1px solid #032CA6;
+
+    }
+
+</style>
 
 <div class="container ">
     <div class="d-flex flex-row my-4">
@@ -38,12 +75,12 @@
                                            
                                             
                                         </select>
-                                        <button type="submit" class="btn btn-dark btn-sm">Modifier</button>
+                                        <button type="submit" class="button--next btn btn-sm">Modifier</button>
                                     </form> 
                                 </td>
                                 <td>{{ item.product.price * item.quantity }} €</td>
                                 <td>
-                                    <a href="{{ path('cart_remove', {'id' : item.product.id}) }}" class="btn btn-danger btn-sm">Supprimer</a>
+                                    <a href="{{ path('cart_remove', {'id' : item.product.id}) }}" class="button--return btn-sm  btn">Supprimer</a>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -63,8 +100,13 @@
                 </thead>
             </table>
             <div>
-                <h4>Produits complémentaires</h4>
-                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style=" width:60%;">
+
+                <!-- CAROUSEL -->
+
+                <h4 class="text-center">Produits complémentaires</h4>
+                <hr class="mb-4">
+
+                <div id="carouselExampleIndicators" class="carousel slide border w-50 mx-auto" data-ride="carousel">
                 
                 <div class="carousel-inner">
                 
@@ -77,10 +119,15 @@
                         {% else %}
                         <div class="carousel-item">
                         {% endif %}
-                            <img class="d-block img-fluid" src="{{ asset('build/images/' ~ product.images)}}" alt="responsive image">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5 class="text-body">{{product.name}} <span class="badge badge-dark">{{product.price}} €</span></h5>
-                                <a  class="btn btn-outline-dark btn-sm" href="{{path ('pageProduct', {'id' : product.id})}}">Voir</a>
+                        <div class="d-flex flex-column text-center mx-4 pt-2">
+                            <h4 class="carousel--name text-center">{{product.name}}</h4>
+                            <p class="price">{{product.price}} ,00 €</p>
+                        </div>
+                            <img class="img-fluid d-block" style="background-color: #F2D5E3;" src="{{ asset('build/images/' ~ product.images)}}" alt="First slide">
+                            <div class="carousel--css carousel-caption d-none d-md-block">
+                                <!-- <h4>{{product.name}}</h4> -->
+                                <!-- <p class="price">{{product.price}} ,00 €</p> -->
+                                <a  class="button--return btn w-50 mx-auto" href="{{path ('pageProduct', {'id' : product.id})}}">Voir</a>
                             </div>
                         </div>
                     {% endfor %}
@@ -95,23 +142,23 @@
             </div>
         </div>
 
-        <div class="d-flex flex-row  justify-content-start">
+        <div class=" d-flex flex-row  justify-content-start">
             <div class="col">
-                <div class="d-flex flex-row  justify-content-around align-items-center p-4 border">
+                <div class="box--price d-flex flex-row  justify-content-around align-items-center p-4 ">
                     {% if app.user %}
                     <p>{{app.user.username}}</p>
                     <p>{{app.user.fidelityPoint}} points</p>
 
                     {% endif %}
                 </div>
-                <div class="d-flex flex-row  justify-content-between border p-4">
+                <div class="box--price d-flex flex-row  justify-content-between  p-4">
                     
                     {{form_start(form)}}
                     {{form_row(form.codeContent)}}
-                    <button type="submit" class="btn btn-primary"> Valider </button>
+                    <button type="submit" class="button--next btn w-50"> Valider </button>
                     {{form_end(form)}}
                 </div>
-                <div class="d-flex flex-column justify-content-between border p-4">
+                <div class="box--price d-flex flex-column justify-content-between  p-4">
                     <p>Mode de livraison:</p>
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
@@ -128,7 +175,7 @@
                 </div>
                 {% if reducedAmount != null %}
 
-                <div class="d-flex flex-row justify-content-between  p-4 border">
+                <div class="box--total d-flex flex-row justify-content-between p-4">
                     <p>  Total : </p>
                     <p> <del> {{ total }} € </del></p>
                     <p> {{reducedAmount}} € </p>
@@ -142,14 +189,16 @@
                     <p>{{ total }} €</p>
                 </div>
                 {% endif %}
-                <div class="d-flex flex-row border">
-                    <a class="w-100" href="{{path('order')}}"><button class="btn-danger w-100" style="height:80px;">NEXT STEP</button></a> 
+                <div class="d-flex flex-row mt-4 ">
+                    <a class="w-100" href="{{path('order')}}"><button class="button--next w-100" style="height:80px;">NEXT STEP</button></a> 
                     </div>
-                    <div class="d-flex flex-row border">
-                    <a class="w-100" href="{{path('homepage')}}"><button class="btn-dark w-100" style="height:80px;">BACK TO STORE</button></a> 
+                    <div class="d-flex flex-row mt-2">
+                    <a class="w-100" href="{{path('homepage')}}"><button class="button--return  w-100" style="height:80px;">BACK TO STORE</button></a> 
                 </div>
             </div>
         </div>
     </div>
 
     </div>
+
+    {% endblock %}

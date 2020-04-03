@@ -3,8 +3,9 @@
 
 
 <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4 mb-4">
-    <div class="card card ">
-    <img class="card-img custom" style="background-color: #AEF2F2;" src="{{ asset('build/images/' ~ product.images)}}" alt="Card image">
+    <div class="card shadow-sm" style="border: 2px solid black;">
+    <img class="card-img custom" style="background-color:  white;" src="{{ asset('build/images/' ~ product.images)}}" alt="Card image">
+    <hr class="w-50 mx-auto">
         <div class="card-body">
             <h4 class="card-title text-center" style="font-family: 'Baloo';">{{product.name}}</h4>
             {# <small class="text-muted cat">
@@ -17,7 +18,7 @@
             <div class=" card-img d-flex flex-column ">
                 <div class="row justify-content-around align-items-center mb-2">
                     <h5 class="text-muted" style="font-size: 2em;">{{product.price | number_format(0,',', ' ')}} €</h5>
-                    <a class="btn w-50" href="{{ path('pageProduct', {'id' : product.id})}}" style="background-color: black; color:white;font-family: 'Baloo';">Voir</a>
+                    <a class="btn w-50 shadow-sm" href="{{ path('pageProduct', {'id' : product.id})}}" style="background-color: #9C9AD9; color:white;font-family: 'Baloo';">Voir</a>
                     
                 </div>
                 {# <a class="js_addCartLink btn btn-secondary w-50" href="{{path ('cart_add', {'id' : product.id})}}">Ajouter au panier</a> #}

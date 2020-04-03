@@ -12,9 +12,9 @@
 {{form_start(form)}}
 <div class="container">
 
-    <div class="d-flex flex-column col-sm-12 col-md-6 col-lg-6 w-75 mx-auto my-4 text-justify">
+    <div class="d-flex flex-column col-sm-12 col-md-6 col-lg-6 w-75 mx-auto  text-justify">
 
-        <h1 class=" text-center mb-4"> Inscription </h1>
+        <h1 class=" text-center p-4"> Inscription </h1>
 
         {{form_row(form.username, {'label': 'Nom utilisateur', 'attr': {'placeholder' : 'Nom'}}) }}
         {{form_row(form.email, {'label': 'Adresse email ','attr': {'placeholder' : 'Adresse mail'}})}}
@@ -23,8 +23,8 @@
         {{form_row(form.telephoneNumber, {'label': 'Numéro de téléphone','attr': {'placeholder' : 'Numéro de téléphone'}, 'type' : 'tel'}) }}
         {{form_row(form.birthdate, {'label': 'Date de naissance'}) }}
         {{form_row(form.newsletter, {'label': 'Inscription à la newsletter'}) }}
-        <div class="row justify-content-center mt-4">
-            <button type="submit" class="button--registration btn w-50" data-toggle="button" aria-pressed="false" autocomplete="off"> INSCRIPTION </button>
+        <div class="row justify-content-center mt-2">
+            <button type="submit" class="button--registration btn w-50" data-toggle="button" aria-pressed="false" autocomplete="off"> INSCRIPTION ;) </button>
         </div>
 
     </div>

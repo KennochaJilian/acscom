@@ -1,4 +1,4 @@
-    <div class="col-md-6 mx-auto">
+    <div class="col-md-6 mx-auto p-4 " style="font-family: 'Montserrat';">
         {{form_start(form) }}
 
             {{form_row(form.nameUser, {'label': 'Nom', 'attr': {'placeholder' : 'Nom'}}) }}
@@ -8,9 +8,15 @@
             {{form_row(form.deliveryAdress, {'label': 'Est ce une adresse de livraison ?'}) }}
 
             {% if editMode %}    
-                <button class="btn btn-danger"> Modifier l'adresse !<button>
+                <button class="btn" style="background-color: black;
+                font-family: 'Baloo', sans-serif;
+                border-radius: 20px;
+                color: white;"> Modifier l'adresse !<button>
             {% else %}
-                <button class="btn btn-success"> Ajouter une adresse !<button>
+                <button class="btn" style="background-color: black;
+                font-family: 'Baloo', sans-serif;
+                border-radius: 20px;
+                color: white;"> Ajouter une adresse !<button>
             {% endif %}
         {{form_end(form)}}
     </div>

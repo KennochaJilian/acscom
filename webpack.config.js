@@ -37,8 +37,8 @@ Encore
 
     // PROFIL USER
 
-    .addEntry('index', './assets/css/home.css')
-    .addEntry('update', './assets/css/home.css')
+    .addEntry('index', './assets/css/index.css')
+    .addEntry('update', './assets/css/update.css')
 
     // PRODUCT
 
@@ -76,7 +76,7 @@ Encore
 
     // ADDRESS
 
-    .addEntry('_cardAddress', './assets/css/_cartAddress.css')
+    .addEntry('_cartAddress', './assets/css/_cardAddress.css')
     .addEntry('_formAddress', './assets/css/_formAddress.css')
 
 

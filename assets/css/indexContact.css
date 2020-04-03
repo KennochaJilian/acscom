@@ -1,4 +1,74 @@
-h1 {
-    font-size: 5vw;
-    color: cornflowerblue;
+/* --CONTACT */
+
+
+
+body {
+    background-color: white;
+    color: black;
 }
+
+form {
+    font-family: 'Montserrat', sans-serif;
+    color:#9C9AD9;
+}
+
+
+
+
+h1 {
+    font-family: 'Baloo', sans serif;
+    color: #9C9AD9;
+}
+
+h2 {
+    font-family: 'Baloo', sans-serif;
+    font-weight: bold;
+    font-size: 25px;
+    color: #032CA6;
+}
+
+
+.button--help {
+
+    background-color: black;
+    font-family: 'Baloo', sans-serif;
+    border-radius: 20px;
+    color: white;
+
+}
+
+.button--help:hover {
+
+    color: blueviolet;
+}
+
+.register_form {
+    background-color: white;
+}
+
+
+
+
+/* PROFILUSER */
+
+
+h4 {
+    font-size: large;
+    color: #032CA6;
+    font-family: 'Baloo', sans-serif;
+}
+
+.button--adress {
+
+    background-color: black;
+    font-family: 'Baloo', sans-serif;
+    border-radius: 20px;
+    color: white;
+
+}
+
+.button--adress:hover {
+
+    color: #F2D5E3;
+}
+
