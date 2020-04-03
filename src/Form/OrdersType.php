@@ -10,6 +10,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Security\Core\Security;
 
@@ -24,7 +25,9 @@ class OrdersType extends AbstractType
     {
         $builder
             
-            ->add('optionGift')
+            ->add('optionGift', CheckboxType::class, [
+                'label' => 'Est-ce un cadeau ? '
+            ])
             ->add('deliveryOption', EntityType::class, [
                 'label' => 'Options de livraison',
                 'class' => DeliveryOptions::class,
