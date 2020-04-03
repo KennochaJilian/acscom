@@ -1,11 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ category }}{% endblock %}
 
 {% block body %}
+<style>
+  body { background-color: #F2D5E3; }
+</style>
 
   <div class="container-fluid">
-    <h1 class="text-center"> {{ category }} </h1>
+    <h1 class="text-center shadow-sm p-4 mb-4" style="font-family: 'Baloo', sans-serif; letter-spacing: 1px; background-color:white; color: #9C9AD9;"> {{ category }} </h1>
     <div class="row">
       <div class="col-md-2">
         <h4 class="text-center"> Prix</h4>

@@ -37,20 +37,20 @@ Encore
 
     // PROFIL USER
 
-    .addEntry('index', './assets/css/index.css')
-    .addEntry('update', './assets/css/update.css')
+    .addEntry('index', './assets/css/ProfilUser/index.css')
+    .addEntry('update', './assets/css/ProfilUser/update.css')
 
     // PRODUCT
 
-    .addEntry('_card', './assets/css/_card.css')
-    .addEntry('_filter', './assets/css/_filter.css')
+    .addEntry('_card', './assets/css/Product/_card.css')
+    .addEntry('_filter', './assets/css/Product/_filter.css')
     .addEntry('product', './assets/css/Product/product.css')
     .addEntry('comment', './assets/js/comment.js')
 
     //ORDER
 
-    .addEntry('check_order', './assets/css/check_order.css')
-    .addEntry('indexOrder', './assets/css/indexOrder.css')
+    .addEntry('check_order', './assets/css/Order/check_order.css')
+    .addEntry('indexOrder', './assets/css/Order/indexOrder.css')
 
     // NAVBAR
 
@@ -62,8 +62,8 @@ Encore
 
     // EMAILS
 
-    .addEntry('orderConfirmed', './assets/css/orderConfirmed.css')
-    .addEntry('recreatePass', './assets/css/recreatePass.css')
+    .addEntry('orderConfirmed', './assets/css/Emails/orderConfirmed.css')
+    .addEntry('recreatePass', './assets/css/Emails/recreatePass.css')
 
     // CONTACT_FORM
 
@@ -71,13 +71,13 @@ Encore
 
     // CART
 
-    .addEntry('_cartDisplay', './assets/css/_cartDisplay.css')
-    .addEntry('indexCart', './assets/css/indexCart.css')
+    .addEntry('_cartDisplay', './assets/css/Cart/_cartDisplay.css')
+    .addEntry('indexCart', './assets/css/Cart/indexCart.css')
 
     // ADDRESS
 
-    .addEntry('_cartAddress', './assets/css/_cardAddress.css')
-    .addEntry('_formAddress', './assets/css/_formAddress.css')
+    .addEntry('_cartAddress', './assets/css/Address/_cardAddress.css')
+    .addEntry('_formAddress', './assets/css/Address/_formAddress.css')
 
 
 
